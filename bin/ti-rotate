@@ -13,6 +13,7 @@ import logging
 import fcntl
 import binascii
 import shutil
+from collections import defaultdict
 
 negotiation_failures = ["invalid type", "bits", "protocol"]
 
@@ -39,30 +40,9 @@ def set_add(_list, _item):
     if _item not in _list:
         _list.append(_item)
 
-def mutate_ids(path, team):
-    logging.debug("mutating ids %s for team %d" % (path, team))
-    with open(path, 'r') as ids:
-        content = ids.read()
+# Removed: mutate_ids
 
-    content += "#hello world\n"
-    filter_hash = hashlib.sha256(content).hexdigest()
-    parts = path.split(os.sep)
-    parts[-3] = str(team)
-    
-    mutate_time = int(time.time())
-    
-    name_parts = parts[-1].split('_')[:-2]
-    name_parts.append(filter_hash)
-    name_parts.append("%d.ids" % mutate_time)
-    parts[-1] = '_'.join(name_parts)
-    
-    new_path = os.sep + os.path.join(*parts)
-    with open(new_path, 'w') as f:
-        f.write(content)
-    
-    return (new_path, filter_hash)
-
-def mutate_rcb(path, team):
+def mutate_rcb(path, team, fixed_replacement=None):
     logging.debug("mutating rcb %s for team %d" % (path, team))
 
     mutate_time = int(time.time())
@@ -74,10 +54,17 @@ def mutate_rcb(path, team):
     parts[-1] = tmpname
     new_path = os.sep + os.path.join(*parts)
     result = None
-    shutil.copyfile(path, new_path)
-    with open(new_path, 'r+') as f:
-        f.seek(9)
-        f.write(os.urandom(7))
+
+    if fixed_replacement:
+        # ADDED: Use the provided CB
+        logging.debug("Replacing with pre-compiled %s. Previous rcb %s, team %d" % (fixed_replacement, path, team))
+        shutil.copyfile(fixed_replacement, new_path)
+    else:
+        # As in DARPA's ti-rotate, randomize Merino!
+        shutil.copyfile(path, new_path)
+        with open(new_path, 'r+') as f:
+            f.seek(9)
+            f.write(os.urandom(7))
 
     new_hash = hash_file(new_path)
 
@@ -87,18 +74,19 @@ def mutate_rcb(path, team):
     parts[-1] = '_'.join(name_parts)
     final_path = os.sep + os.path.join(*parts)
     os.rename(new_path, final_path)
-    
+
     return (final_path, new_hash)
+
 
 def is_locked(path):
     result = False
-    
+
     with open(path, 'r') as f:
         try:
             fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except IOError:
             result = True
-    
+
     return result
 
 class Rotator(object):
@@ -107,7 +95,7 @@ class Rotator(object):
 
         #where files are served from, where we need to save our json
         self.web_root = webroot
-        # self.cbdir = cbdir
+        self.initial_cbdir = cbdir
 
         self.round_num = 0
 
@@ -115,7 +103,9 @@ class Rotator(object):
         self.csets = {}
         self.round_time = 0
         self.installed_povs = {}
-        
+
+        self.precompiled_cbs = defaultdict(list)
+
         self.teams = [i for i in range(1, 8)]
         self.installed_cbs = {team:{} for team in self.teams}
         self.installed_filters = {team:{} for team in self.teams}
@@ -147,6 +137,7 @@ class Rotator(object):
         for csid in dirnames:
             (csidpath, _, cbnames) = os.walk(os.path.join(cbdir, csid, "bin")).next()
             for cb in cbnames:
+                self.precompiled_cbs[csid].append(os.path.join(cbdir, csid, "bin", cb))
                 if '_patched' in cb:
                     continue
                 if csid in self.csets:
@@ -168,7 +159,7 @@ class Rotator(object):
 
     def install_filters(self):
         #install initial filters to all teams
-        
+
         base_ids_rule = '#empty\n'
         install_time = int(time.time())
         filter_hash = hashlib.sha256(base_ids_rule).hexdigest()
@@ -199,27 +190,8 @@ class Rotator(object):
                     pass
 
     def issue_ids(self):
-        if self.round_num == 0:
-            return
-        for team in self.teams:
-            if team != self.my_team:
-                chance = random.randrange(1000)
-                if chance < 50:
-                    #give this team a new ids_filter
-                    while True:
-                        donor = random.randint(1, 7)
-                        if donor != team and len(self.installed_filters[donor]) > 0:
-                            filters = self.installed_filters[donor]
-                            csids = filters.keys()
-                            rand_csid = random.choice(csids)
-                            ids_filter = filters[rand_csid]
-                            new_path, new_hash = mutate_ids(ids_filter['path'], team)
-                            new_filt = {}
-                            new_filt['timestamp'] = int(time.time())
-                            new_filt['hash'] = new_hash
-                            new_filt['path'] = new_path
-                            self.installed_filters[team][rand_csid] = new_filt
-                            break
+        # DISABLED
+        return
 
     def issue_rcbs(self):
         if self.round_num == 0:
@@ -228,8 +200,20 @@ class Rotator(object):
         for team in self.teams:
             if team != self.my_team:
                 chance = random.randrange(1000)
+                if chance < 20:
+                    # ADDED: this team will (re)deploy an official, possibly patched, version
+                    rand_cbid = random.choice(self.installed_cbs[team].keys())
+                    rcb = self.installed_cbs[team][rand_cbid]
+                    original = random.choice(self.precompiled_cbs[rcb['csid']])
+                    new_path, new_hash = mutate_rcb(rcb['path'], team, fixed_replacement=original)
+                    new_rcb = {}
+                    new_rcb['timestamp'] = int(time.time())
+                    new_rcb['hash'] = new_hash
+                    new_rcb['path'] = new_path
+                    new_rcb['csid'] = rcb['csid']
+                    self.installed_cbs[team][rand_cbid] = new_rcb
                 if chance < 50:
-                    #give this team a new rcb
+                    #give this team a new (randomly-mutated copy) rcb
                     while True:
                         donor = random.randint(1, 7)
                         if donor != team and len(self.installed_filters[donor]) > 0:
@@ -256,7 +240,7 @@ class Rotator(object):
         except StopIteration:
             logging.error("No POVs to distribute")
             new_povs = []
-        
+
         #TODO: update map of currently installed povs
         #csid -> povname (with hash suffix)
         temp_povs = {} #handle multiple submissions against same csid
@@ -415,7 +399,7 @@ class Rotator(object):
 
         #TODO - shell out to scp any submitted rcbs to defended host ??
         rcb_dir = os.path.join(self.web_root, 'rcb')
-       
+
         try:
             (dirpath, _, new_rcb) = os.walk(rcb_dir).next()
         except StopIteration:
@@ -481,9 +465,9 @@ class Rotator(object):
     def build_poll_summary_list(self):
         result = []
         for csid in self.csets:
-            
+
             total = 100
-            
+
             success = random.randint(0, total - 30)
             total -= success
 
@@ -541,7 +525,7 @@ class Rotator(object):
                     else:
                         attempt["result"] = "fail"
                         fail_type = random.randint(0, 9)
-                        #simulate 30% of failures as some sort of negotiate failure 
+                        #simulate 30% of failures as some sort of negotiate failure
                         if fail_type < 3:
                            attempt["error"] = negotiation_failures[fail_type]
                         else:
@@ -670,7 +654,7 @@ def main():
                                                 formatter_class=formatter)
 
     required = parser.add_argument_group(title='required')
-    required.add_argument('--roundlen', required=True, type=int,
+    required.add_argument('--roundlen', required=False, type=int, default=300,
                                  help='Length of a round in seconds')
 
     parser.add_argument('--debug', required=False, action='store_true',
@@ -678,14 +662,13 @@ def main():
 
     parser.add_argument('--log', required=False, type=str, help='Log filename')
 
-    parser.add_argument('--cbdir', required=False, type=str, default='/usr/share/cgc-challenges',
+    parser.add_argument('--cbdir', required=True, type=str,
                               help='Initial CB directory')
 
-    parser.add_argument('--webroot', required=False, type=str,
-                              default="/tmp/virtual-competition/webroot",
+    parser.add_argument('--webroot', required=True, type=str,
                               help='ti-server web root directory, attempts to create if it does not exist')
 
-    parser.add_argument('--team', required=False, type=int, default=1, help='Simulate playing as the specified team (0-7)')
+    parser.add_argument('--team', required=False, type=int, default=6, help='Simulate playing as the specified team (0-7)')
     parser.add_argument('--rounds', required=False, type=int, help='How many rounds to simulate')
 
     args = parser.parse_args()

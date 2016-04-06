@@ -1,13 +1,10 @@
 #!/usr/bin/python
 
 """
-CGC - Sample Team Interface executable
-
-Under 17 U.S.C section 105 US Government Works are not subject to domestic copyright
-protection.
+MODIFIED ti-server
+https://github.com/CyberGrandChallenge/virtual-competition/blob/master/bin/ti-server
 """
 
-import daemon
 import argparse
 import SimpleHTTPServer
 import SocketServer
@@ -19,7 +16,6 @@ import struct
 import binascii
 import sys
 import json
-import ids
 import time
 import fcntl
 import logging
@@ -91,7 +87,6 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     config = None
     nonces = {}
     sessions = []
-    ids_parser = ids.ids_parser.ids_parser()
 
     files = {re.compile("^/round/[0-9]+/feedback/cb$"): 'application/json', # CB Stats
              re.compile("^/status$"): 'application/json',  # Game status
@@ -241,17 +236,6 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                                          'CONTENT_TYPE':self.headers['Content-Type'],})
 
     @staticmethod
-    def is_valid_filter(infile):
-        infile.seek(0)
-        lines = infile.readlines()
-        for rule in lines:
-            try:
-                TeamInterfaceHandler.ids_parser.parse(rule)
-            except SyntaxError:
-                return False
-        return True
-
-    @staticmethod
     def is_valid_cgc(infile):
         try:
             # save to tempfile and use cgcef_verify to validate
@@ -354,52 +338,8 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         self.json_response(code, resp)
 
     def post_ids(self):
-        msgs = []
-        resp = {} # 'file': '', 'hash':''}
-        form = self.get_form()
-
-        msgs = []
-
-        if 'csid' in form: 
-            csid = form['csid'].value
-            if not self.is_valid_csid(csid):
-                msgs.append('invalid csid')
-        else:
-            msgs.append('invalid csid')
-
-        if 'file' in form:
-            ids_file = form['file']
-            fname = ids_file.filename
-          
-            if not fname:
-                msgs.append('invalid format')
-    
-            resp["file"] = fname
-            ext = hash_file(ids_file.file)
-            resp["hash"] = ext
-            
-            size = file_size(ids_file.file)
-            if size > self.config['max_ids']:
-                msgs.append("malformed request")
-            
-            if not self.is_valid_filter(ids_file.file):
-                msgs.append('invalid format')
-
-        else:
-            msgs.append('malformed request')
-       
-        if not len(msgs):
-            timestamp = int(time.time())
-            prefix = "%s%s%s" % (os.curdir, os.sep, self.path)
-            write_from_file(ids_file.file, os.path.join(prefix, "%s_%s_%d.ids" % (csid, ext, timestamp)))
-
-            code = 200
-            resp["round"] = get_current_round()
-        else:
-            code = 400
-            resp['error'] = msgs
-            
-        return self.json_response(code, resp)
+        # TODO: actually run the IDS system and have it filter stuff
+        return self.json_response(500, "I REMOVED THIS")
 
     def post_rcb(self):
         msgs = []
@@ -551,28 +491,24 @@ def main():
 
     parser.add_argument('--debug', required=False, action='store_true',
                         default=False, help='Enable debugging')
-    parser.add_argument('--team', required=False, type=int, default=1,
+    parser.add_argument('--team', required=False, type=int, default=6,
                         help='Run as the server for the specified team')
     parser.add_argument('--port', required=False, type=int, default=1996,
                         help='TCP Port to listen')
-    parser.add_argument('--daemonize', required=False, action='store_true',
-                        default=False, help='Run as a daemon')
-    parser.add_argument('--cbdir', required=False, type=str,
-                        default='/usr/share/cgc-challenges',
+    parser.add_argument('--cbdir', required=True, type=str,
                         help='Initial CB directory')
     parser.add_argument('--username', required=False, type=str,
-                        default='vagrant', help='Username for client to use')
+                        default='team-6', help='Username for client to use')
     parser.add_argument('--password', required=False, type=str,
-                        default='vagrant', help='Password for client to use')
-    parser.add_argument('--webroot', required=False, type=str,
-                        default="/tmp/virtual-competition/webroot",
+                        default='9fb864f629eb4502edd795e5b7d5c3a0bac0aa8f56c183e3f795c523c0d4f82f', help='Password for client to use')
+    parser.add_argument('--webroot', required=True, type=str,
                         help='ti-server web root directory; attempts to create if it does not exist')
     parser.add_argument('--max_pov', required=False, type=int,
-                        default=1024*10000)
+                        default=10*1024*1024)
     parser.add_argument('--max_ids', required=False, type=int,
-                        default=1024*10000)
+                        default=10*1024*1024)
     parser.add_argument('--max_rcb', required=False, type=int,
-                        default=1024*50000)
+                        default=50*1024*1024)
 
     args = parser.parse_args()
     
@@ -608,11 +544,7 @@ def main():
     add_auth('.htdigest', config['realm'], args.username, args.password)
 
     TeamInterfaceHandler.config = config
-    if args.daemonize:
-        with daemon.DaemonContext(uid=1000, gid=1000, stderr=sys.stderr, stdout=sys.stdout, stdin=sys.stdin, working_directory=webroot_abs, files_preserve=[httpd.fileno()]):
-            httpd.serve_forever()
-    else:
-        httpd.serve_forever()
+    httpd.serve_forever()
 
 if __name__ == "__main__":
     exit(main())

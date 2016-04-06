@@ -1,0 +1,36 @@
+#!/bin/bash
+MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+which cgcef_verify >/dev/null || { echo "I need CGC scripts, run me in their VM!"; exit 1; }
+! [ "$(pgrep ti-server)" ] || { echo "ti-server already running?"; ps -f $(pgrep ti-server); exit 1; }
+! [ "$(pgrep ti-rotate)" ] || { echo "ti-rotate already running?"; ps -f $(pgrep ti-rotate); exit 1; }
+set -eux
+
+WEBROOT="/tmp/virtualgame_webroot"
+rm -rf "$WEBROOT"
+mkdir "$WEBROOT"
+
+if [ ! -e challenges ] || ! [ "$(ls challenges/)" ]; then
+    echo "challenges dir not found. Copying here DARPA's samples."
+    cp -r /usr/share/cgc-sample-challenges/examples/ challenges
+    echo "Making them. This will take a LONG time."
+    for csdir in challenges/*; do
+        echo "Making $csdir ..."
+        # Note: -j makes it fail!
+        make -C "$csdir" -s
+    done
+fi
+
+# Note: run only one of these! This is the real round-by-round simulation
+"$MYDIR/ti-rotate" --cbdir "$MYDIR/challenges" --webroot "$WEBROOT" \
+    --log /tmp/ti-rotate.log \
+    --debug >/tmp/ti-rotate.stdout 2>/tmp/ti-rotate.stderr &
+echo $! > /tmp/ti-rotate.pid
+disown
+
+"$MYDIR/ti-server" --cbdir "$MYDIR/challenges" --webroot "$WEBROOT" \
+   --debug >/tmp/ti-server.stdout 2>/tmp/ti-server.stderr &
+echo $! > /tmp/ti-server.pid
+disown
+
+echo "Launched! Kill ti-server and ti-rotate to stop."
+echo "For logs and info, see /tmp/ti-{rotate,server}.*"
