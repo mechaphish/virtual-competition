@@ -4,8 +4,8 @@ nodes = {
     'cb'  => {:ip => ['172.16.0.10'], :memory => 512, :primary => false},
     'ids' => {:ip => ['172.16.0.11', '172.16.0.12'], :memory => 256, :primary => false},
     'pov' => {:ip => ['172.16.0.13', '172.16.0.14'], :memory => 512, :primary => false},
-    'crs' => {:ip => ['172.16.0.15'], :memory => 1024, :primary => true},
-    'ti'  => {:ip => ['172.16.0.16'], :memory => 512, :primary => false}
+    # 'crs' => {:ip => ['172.16.0.15'], :memory => 1024, :primary => false},
+    'ti'  => {:ip => ['172.16.0.16'], :memory => 512, :primary => true}
 }
 
 Vagrant.configure(2) do |config|
@@ -24,15 +24,15 @@ Vagrant.configure(2) do |config|
                 vb.customize ["modifyvm", :id, "--memory", nodes[name][:memory]] if nodes[name][:memory]
                 vb.customize ["modifyvm", :id, "--ioapic", "on"]
             end
-        end
 
-        config.vm.provision "shell", inline: "sudo su -c 'echo #{nodes[name][:ip][0]} #{name} >> /etc/hosts'"
-        if name == 'ti'
-            # config.vm.provision :shell, path: "bin/compile"
-            config.vm.provision :file, source: "bin/launch", destination: "~/launch"
-            config.vm.provision :file, source: "bin/ti-server", destination: "~/ti-server"
-            config.vm.provision :file, source: "bin/ti-rotate", destination: "~/ti-rotate"
-            config.vm.network "forwarded_port", guest: 8888, host: 8888
+            node.vm.provision "shell", inline: "sudo su -c 'echo #{nodes[name][:ip][0]} #{name} >> /etc/hosts'"
+            node.vm.provision :shell, path: "bin/compile"
+            if name == 'ti'
+                node.vm.provision :file, source: "bin/launch", destination: "~/launch"
+                node.vm.provision :file, source: "bin/ti-server", destination: "~/ti-server"
+                node.vm.provision :file, source: "bin/ti-rotate", destination: "~/ti-rotate"
+                node.vm.network "forwarded_port", guest: 8888, host: 8888
+            end
         end
     end
 

@@ -6,7 +6,7 @@ which cgcef_verify >/dev/null || { echo "I need CGC scripts, run me in their VM!
 set -eux
 
 MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-CHALLENGES=/vagrant/shared/challenges
+CHALLENGES=/vagrant/shared/cgc-challenges
 WEBROOT="/tmp/virtualgame_webroot"
 rm -rf "$WEBROOT"
 mkdir "$WEBROOT"

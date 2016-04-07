@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+CHALLENGES=/vagrant/shared/cgc-challenges
+
+if [ -d "$CHALLENGES" ] && [ "$(ls $CHALLENGES)" ]; then
+    echo "Challenges already compiled"
+    exit 0
+fi
+
+echo "Challenges dir not found. Compiling DARPA's samples"
 for i in /usr/share/cgc-sample-challenges/examples/*; do
   echo "COMPILING $i" && cd $i
   sudo make --silent build
@@ -8,4 +16,4 @@ for i in /usr/share/cgc-sample-challenges/examples/*; do
 done
 
 mkdir -p /vagrant/shared/
-cp -r /usr/share/cgc-challenges /vagrant/shared/challenges
+cp -r /usr/share/cgc-challenges /vagrant/shared/
