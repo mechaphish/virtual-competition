@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+for i in /usr/share/cgc-sample-challenges/examples/*; do
+  echo "COMPILING $i" && cd $i
+  sudo make --silent build
+  sudo make --silent generate-polls
+  sudo make --silent install
+done
+
+mkdir -p /vagrant/shared/
+cp -r /usr/share/cgc-challenges /vagrant/shared/challenges
