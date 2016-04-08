@@ -25,7 +25,6 @@ Vagrant.configure(2) do |config|
                 vb.customize ["modifyvm", :id, "--ioapic", "on"]
             end
 
-            node.vm.provision "shell", inline: "sudo su -c 'echo #{nodes[name][:ip][0]} #{name} >> /etc/hosts'"
             node.vm.provision :shell, path: "bin/compile"
             if name == 'ti'
                 node.vm.provision :file, source: "bin/launch", destination: "~/launch"
@@ -34,6 +33,7 @@ Vagrant.configure(2) do |config|
                 node.vm.network "forwarded_port", guest: 8888, host: 8888
             end
         end
+        config.vm.provision "shell", inline: "sudo su -c 'echo #{nodes[name][:ip][0]} #{name} >> /etc/hosts'"
     end
 
 
