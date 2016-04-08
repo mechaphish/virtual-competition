@@ -1,30 +1,89 @@
 #!/usr/bin/env bash
 
+set -eu
+
 which cgcef_verify >/dev/null || { echo "I need CGC scripts, run me in their VM!"; exit 1; }
-! [ "$(pgrep ti-server)" ] || { echo "ti-server already running?"; ps -f $(pgrep ti-server); exit 1; }
-! [ "$(pgrep ti-rotate)" ] || { echo "ti-rotate already running?"; ps -f $(pgrep ti-rotate); exit 1; }
-set -eux
 
 MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-CHALLENGES=/vagrant/shared/cgc-challenges
-WEBROOT="/tmp/virtualgame_webroot"
-rm -rf "$WEBROOT"
-mkdir "$WEBROOT"
+CHALLENGES="/vagrant/shared/cgc-challenges"
+WEBROOT="/vagrant/shared/webroot"
 
-# Note: run only one of these! This is the real round-by-round simulation
-"$MYDIR/ti-rotate" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
-    --roundlen 300 --team 6 --rounds 100 \
-    --log /tmp/ti-rotate.log \
-    --debug >/tmp/ti-rotate.stdout 2>/tmp/ti-rotate.stderr &
-echo $! > /tmp/ti-rotate.pid
-disown
+function running {
+    if pgrep $1 > /dev/null && [ -e /tmp/${1}.pid ] ; then
+        return 0
+    else
+        return 1
+    fi
+}
 
-"$MYDIR/ti-server" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
-   --port 8888 \
-   --username "team-6" --password 9fb864f629eb4502edd795e5b7d5c3a0bac0aa8f56c183e3f795c523c0d4f82f \
-   --debug >/tmp/ti-server.stdout 2>/tmp/ti-server.stderr &
-echo $! > /tmp/ti-server.pid
-disown
+function status {
+    if running ti-server; then
+        echo "ti-server is running with PID `cat /tmp/ti-server.pid`"
+    else
+        echo "ti-server STOPPED"
+    fi
+    if running ti-rotate; then
+        echo "ti-rotate is running with PID `cat /tmp/ti-rotate.pid`"
+    else
+        echo "ti-rotate STOPPED"
+    fi
+}
 
-echo "Launched! Kill ti-server and ti-rotate to stop."
-echo "For logs and info, see /tmp/ti-{rotate,server}.*"
+function start {
+    if running ti-server || running ti-rotate; then
+        echo "ti-server and ti-rotate already running!"
+        exit 1
+    fi
+
+    rm -rf "$WEBROOT"
+    mkdir "$WEBROOT"
+
+    # Note: run only one of these! This is the real round-by-round simulation
+    "$MYDIR/ti-rotate" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
+                       --roundlen 300 --team 6 --rounds 100 \
+                       --log /tmp/ti-rotate.log \
+                       --debug >/tmp/ti-rotate.stdout 2>/tmp/ti-rotate.stderr &
+    echo $! > /tmp/ti-rotate.pid
+    disown
+
+    "$MYDIR/ti-server" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
+                       --port 8888 \
+                       --username "team-6" --password 9fb864f629eb4502edd795e5b7d5c3a0bac0aa8f56c183e3f795c523c0d4f82f \
+                       --debug >/tmp/ti-server.stdout 2>/tmp/ti-server.stderr &
+    echo $! > /tmp/ti-server.pid
+    disown
+
+    echo "Launched! For logs and info, see /tmp/ti-{rotate,server}.*"
+}
+
+function stop {
+    if running ti-server; then
+        kill `cat /tmp/ti-server.pid`
+        rm /tmp/ti-server.pid
+        echo "ti-server STOPPED"
+    fi
+    if running ti-rotate; then
+        kill `cat /tmp/ti-rotate.pid`
+        rm /tmp/ti-rotate.pid
+        echo "ti-rotate STOPPED"
+    fi
+}
+
+case "${1-help}" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    status)
+        status
+        ;;
+    *)
+        echo "Usage: ${BASH_SOURCE[0]} {start|stop|restart|status}"
+        ;;
+esac
