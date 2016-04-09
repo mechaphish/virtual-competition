@@ -395,7 +395,9 @@ class Rotator(object):
 
     def distribute_rcb(self, eval_dir):
         install_path = os.path.join(self.web_root, "dl", str(self.my_team), "cb")
+        to_field_path = os.path.join(self.web_root, 'rcb_to_field')
         try_makedirs(install_path)
+        try_makedirs(to_field_path)
 
         #TODO - shell out to scp any submitted rcbs to defended host ??
         rcb_dir = os.path.join(self.web_root, 'rcb')
@@ -455,12 +457,39 @@ class Rotator(object):
             logging.debug("Installing %s as replacement CB", rcb_path)
             src_path = rcb_path
             dst_path = os.path.join(install_path, os.path.basename(rcb_path))
+            # ADDED: copy rcbs to different folder for cb-test inspection
+            import shutil
+            shutil.copyfile(src_path, os.path.join(to_field_path, os.path.basename(rcb_path)))
+            # /ADDED
             os.rename(src_path, dst_path)
             #update path to reflect new location
             rcb[1]["path"] = os.path.join(install_path, rcb[1]["path"])
 
+        # other teams RCBs
         self.issue_rcbs()
         self.write_consensus_rcb(eval_dir)
+
+    def field_rcb(self):
+        to_field_path = os.path.join(self.web_root, 'rcb_to_field')
+        fielded_path = os.path.join(self.web_root, 'rcb_fielded')
+        try_makedirs(to_field_path)
+        try_makedirs(fielded_path)
+        (dirpath, _, cbnames) = os.walk(to_field_path).next()
+        for rcb in cbnames:
+            src_path = os.path.join(dirpath, rcb)
+            dst_path = os.path.join(fielded_path, rcb)
+            os.rename(src_path, dst_path)
+            parts = rcb.split('_')
+            cbid = '_'.join(parts[:-2])
+            import subprocess
+            output_dir = "/vagrant/shared/webroot/rcb_tests/%s" % self.round_num
+            output_file = os.path.join(output_dir, cbid)
+            cb_file = "/vagrant/shared/webroot/rcb_fielded/%s" % rcb
+            try_makedirs(output_dir)
+            cb_cmd = '/vagrant/shared/cbtest_wrapper.py -p 5 -i %s %s > %s' % (cbid, cb_file, output_file)
+            logging.debug("CMD %s", cb_cmd)
+            subprocess.Popen(['ssh', 'cb', '-x', cb_cmd])
+            logging.debug("Fielded CB %s", dst_path)
 
     def build_poll_summary_list(self):
         result = []
@@ -607,6 +636,8 @@ class Rotator(object):
             #make sure this round's evaluation directory exists
             path = os.path.join(self.web_root, "round", str(self.round_num), "evaluation", "cb")
             try_makedirs(path)
+            # ADDED: field rcbs
+            self.field_rcb()
             #move stuff to download directories
             self.distribute_rcb(path)
 
