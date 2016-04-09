@@ -27,9 +27,6 @@ Vagrant.configure(2) do |config|
 
             node.vm.provision :shell, path: "bin/compile"
             if name == 'ti'
-                node.vm.provision :file, source: "bin/launch", destination: "~/launch"
-                node.vm.provision :file, source: "bin/ti-server", destination: "~/ti-server"
-                node.vm.provision :file, source: "bin/ti-rotate", destination: "~/ti-rotate"
                 node.vm.network "forwarded_port", guest: 8888, host: 8888
             end
         end
