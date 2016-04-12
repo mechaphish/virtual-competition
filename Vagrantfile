@@ -2,8 +2,8 @@
 
 nodes = {
     'cb'  => {:ip => ['172.16.0.10'], :memory => 512, :primary => false},
-    'ids' => {:ip => ['172.16.0.11', '172.16.0.12'], :memory => 256, :primary => false},
-    'pov' => {:ip => ['172.16.0.13', '172.16.0.14'], :memory => 512, :primary => false},
+    # 'ids' => {:ip => ['172.16.0.11', '172.16.0.12'], :memory => 256, :primary => false},
+    # 'pov' => {:ip => ['172.16.0.13', '172.16.0.14'], :memory => 512, :primary => false},
     # 'crs' => {:ip => ['172.16.0.15'], :memory => 1024, :primary => false},
     'ti'  => {:ip => ['172.16.0.16'], :memory => 512, :primary => true}
 }
