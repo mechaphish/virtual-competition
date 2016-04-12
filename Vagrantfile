@@ -1,11 +1,11 @@
 # vi: set ft=ruby
 
 nodes = {
-    'cb'  => {:ip => ['172.16.0.10'], :memory => 512, :primary => false},
+    'cb'  => {:ip => ['172.16.0.10'], :memory => 512, :cpus => 4, :primary => false},
     # 'ids' => {:ip => ['172.16.0.11', '172.16.0.12'], :memory => 256, :primary => false},
     # 'pov' => {:ip => ['172.16.0.13', '172.16.0.14'], :memory => 512, :primary => false},
     # 'crs' => {:ip => ['172.16.0.15'], :memory => 1024, :primary => false},
-    'ti'  => {:ip => ['172.16.0.16'], :memory => 512, :primary => true}
+    'ti'  => {:ip => ['172.16.0.16'], :memory => 512, :cpus => 2, :primary => true}
 }
 
 Vagrant.configure(2) do |config|
@@ -21,11 +21,14 @@ Vagrant.configure(2) do |config|
 
             node.vm.provider :virtualbox do |vb|
                 # vb.gui = true
-                vb.customize ["modifyvm", :id, "--memory", nodes[name][:memory]] if nodes[name][:memory]
+                vb.cpus = nodes[name][:cpus] if nodes[name][:cpus]
+                vb.memory = nodes[name][:memory] if nodes[name][:memory]
                 vb.customize ["modifyvm", :id, "--ioapic", "on"]
             end
 
             node.vm.provision :shell, path: "bin/compile"
+            node.vm.provision :shell, inline: "sudo dpkg -i /vagrant/pkgs/multitail_5.2.8-1_i386.deb"
+            node.vm.provision :shell, inline: "echo 'check_mail:0' > /home/vagrant/.multitailrc"
             if name == 'ti'
                 node.vm.network "forwarded_port", guest: 8888, host: 8888
             end
