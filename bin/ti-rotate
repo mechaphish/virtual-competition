@@ -7,7 +7,7 @@ import argparse
 import time
 import signal
 import hashlib
-#import subprocess
+import subprocess
 import random
 import logging
 import fcntl
@@ -90,12 +90,14 @@ def is_locked(path):
     return result
 
 class Rotator(object):
-    def __init__(self, seconds, webroot, cbdir, team):
+    def __init__(self, seconds, webroot, cbdir, team, polls):
         self.round_length = seconds
 
         #where files are served from, where we need to save our json
         self.web_root = webroot
         self.initial_cbdir = cbdir
+
+        self.polls = polls
 
         self.round_num = 0
 
@@ -114,6 +116,7 @@ class Rotator(object):
 
         self.my_cbs = self.installed_cbs[self.my_team]
         self.my_filters = self.installed_filters[self.my_team]
+        self.my_cbs_status = {} # CSID: down, fielded
 
         try_makedirs(self.web_root)
 
@@ -144,6 +147,7 @@ class Rotator(object):
                     self.csets[csid] += 1
                 else:
                     self.csets[csid] = 1
+                self.my_cbs_status[csid] = 'fielded'
 
                 cb_loc = os.path.join(csidpath, cb)
                 cbhash = hash_file(cb_loc)
@@ -393,11 +397,29 @@ class Rotator(object):
             with open(eval_path, "w") as status_file:
                 status_file.write(json.dumps(status, indent=True, sort_keys=True))
 
+    def cbinfo_from_name(self, path):
+        parts = path.split('_')
+        ts = int(parts[-1])
+        rcb_hash = parts[-2]
+        cbid = '_'.join(parts[:-2])
+
+        csid = parts[0]
+        parts_idx = 1
+        while True:
+            if csid in self.csets:
+                break
+            csid += "_" + parts[parts_idx]
+            parts_idx += 1
+
+        return (ts, cbid, csid, path, rcb_hash)
+
     def distribute_rcb(self, eval_dir):
         install_path = os.path.join(self.web_root, "dl", str(self.my_team), "cb")
-        to_field_path = os.path.join(self.web_root, 'rcb_to_field')
         try_makedirs(install_path)
-        try_makedirs(to_field_path)
+        # ADDED: copy rcbs to different folder for cb-test inspection
+        fielded_path = os.path.join(self.web_root, 'rcb_fielded')
+        try_makedirs(fielded_path)
+        # /ADDED
 
         #TODO - shell out to scp any submitted rcbs to defended host ??
         rcb_dir = os.path.join(self.web_root, 'rcb')
@@ -420,19 +442,7 @@ class Rotator(object):
                 #still being written by web server
                 continue
 
-            parts = rcb.split('_')
-            ts = int(parts[-1])
-            rcb_hash = parts[-2]
-            cbid = '_'.join(parts[:-2])
-
-            csid = parts[0]
-            parts_idx = 1
-            while True:
-                if csid in self.csets:
-                    break
-                csid += "_" + parts[parts_idx]
-                parts_idx += 1
-
+            ts, cbid, csid, path, rcb_hash = self.cbinfo_from_name(rcb)
             record = {"timestamp":ts, "csid":csid, "path":rcb, "hash":rcb_hash}
             if cbid in temp_rcb:
                 newest = temp_rcb[cbid]
@@ -458,8 +468,9 @@ class Rotator(object):
             src_path = rcb_path
             dst_path = os.path.join(install_path, os.path.basename(rcb_path))
             # ADDED: copy rcbs to different folder for cb-test inspection
-            import shutil
-            shutil.copyfile(src_path, os.path.join(to_field_path, os.path.basename(rcb_path)))
+            _, _, csid, _, _ = self.cbinfo_from_name(rcb[1]['path'])
+            shutil.copyfile(src_path, os.path.join(fielded_path, csid))
+            self.my_cbs_status[csid] = 'down'
             # /ADDED
             os.rename(src_path, dst_path)
             #update path to reflect new location
@@ -470,28 +481,31 @@ class Rotator(object):
         self.write_consensus_rcb(eval_dir)
 
     def field_rcb(self):
-        to_field_path = os.path.join(self.web_root, 'rcb_to_field')
         fielded_path = os.path.join(self.web_root, 'rcb_fielded')
-        try_makedirs(to_field_path)
         try_makedirs(fielded_path)
-        (dirpath, _, cbnames) = os.walk(to_field_path).next()
-        for rcb in cbnames:
-            src_path = os.path.join(dirpath, rcb)
-            dst_path = os.path.join(fielded_path, rcb)
-            os.rename(src_path, dst_path)
-            parts = rcb.split('_')
-            cbid = '_'.join(parts[:-2])
-            import subprocess
-            output_dir = "/vagrant/shared/webroot/rcb_tests/%s" % self.round_num
-            output_file = os.path.join(output_dir, cbid)
-            cb_file = "/vagrant/shared/webroot/rcb_fielded/%s" % rcb
-            try_makedirs(output_dir)
-            cb_cmd = '/vagrant/shared/cbtest_wrapper.py -p 5 -i %s %s > %s' % (cbid, cb_file, output_file)
-            logging.debug("CMD %s", cb_cmd)
-            subprocess.Popen(['ssh', 'cb', '-x', cb_cmd])
-            logging.debug("Fielded CB %s", dst_path)
+        (dirpath, _, cbnames) = os.walk(fielded_path).next()
+
+        for csid in cbnames:
+            rcb_path = os.path.join(dirpath, csid)
+            if self.my_cbs_status[csid] == 'fielded':
+                self.test_fielded_rcb(csid)
+            elif self.my_cbs_status[csid] == 'down':
+                self.my_cbs_status[csid] = 'fielded'
+
+    def test_fielded_rcb(self, rcb):
+        _, _, csid,  _, _ = self.cbinfo_from_name(rcb)
+        output_dir = os.path.join(self.web_root, "cbtests/round/%s" % self.round_num)
+        output_file = os.path.join(output_dir, csid)
+        cb_file = os.path.join(self.web_root, "rcb_fielded/%s" % rcb)
+        try_makedirs(output_dir)
+        cb_cmd = '/vagrant/bin/cbtest_wrapper.py -p %s -i %s %s > %s' % (self.polls, csid, cb_file, output_file)
+        logging.debug("CMD %s", cb_cmd)
+        subprocess.Popen(['ssh', 'cb', '-x', cb_cmd])
+        logging.debug("Fielded CB %s", cb_file)
 
     def build_poll_summary_list(self):
+        fielded_path = os.path.join(self.web_root, 'rcb_fielded')
+        results_path = os.path.join(self.web_root, "cbtests/round/%s" % (self.round_num - 1))
         result = []
         for csid in self.csets:
 
@@ -510,6 +524,18 @@ class Rotator(object):
 
             assert 100 == success + timeout + connect + function
 
+            perf = {}
+            results = os.path.join(results_path, csid)
+            if os.path.isfile(results):
+                with open(results) as jsonfile:
+                    data = json.load(jsonfile)
+                perf['time'] = int((data['tested']['scores']['ExecTimeOverhead'] + 1) * 100)
+                perf['memory'] = int((data['tested']['scores']['MemUseOverhead'] + 1) * 100)
+                logging.debug("Results %s: %s", results, perf)
+            else:
+                perf['time'] = int(random.uniform(0.85, 1.15) * 100)
+                perf['memory'] = int(random.uniform(0.85, 1.15) * 100)
+
             poll = {
                 'csid': csid,
                 'functionality': {
@@ -519,8 +545,8 @@ class Rotator(object):
                     'function': function
                 },
                 'performance': {
-                    'time': random.randint(85, 115),
-                    'memory': random.randint(85, 115)
+                    'time': perf['time'],
+                    'memory': perf['memory']
                 }
             }
             result.append(poll)
@@ -636,8 +662,6 @@ class Rotator(object):
             #make sure this round's evaluation directory exists
             path = os.path.join(self.web_root, "round", str(self.round_num), "evaluation", "cb")
             try_makedirs(path)
-            # ADDED: field rcbs
-            self.field_rcb()
             #move stuff to download directories
             self.distribute_rcb(path)
 
@@ -651,6 +675,16 @@ class Rotator(object):
             path = os.path.join(self.web_root, "round", str(self.round_num), "feedback")
             try_makedirs(path)
 
+            self.write_poll_feedback(path)
+            self.write_pov_feedback(path)
+            self.write_cb_feedback(path)
+
+            # DEBUG
+            logging.debug("self.my_cbs_status %s", self.my_cbs_status)
+
+            # ADDED: field rcbs
+            self.field_rcb()
+
             if self.round_num > 0:
                 self.update_scores()
 
@@ -659,11 +693,6 @@ class Rotator(object):
 
             #sleep until end of round
             time.sleep(self.round_length)
-
-            #now write feedback for the round that just completed
-            self.write_poll_feedback(path)
-            self.write_pov_feedback(path)
-            self.write_cb_feedback(path)
 
             self.round_num += 1
             if rounds is not None and self.round_num >= rounds:
@@ -701,6 +730,7 @@ def main():
 
     parser.add_argument('--team', required=False, type=int, default=6, help='Simulate playing as the specified team (0-7)')
     parser.add_argument('--rounds', required=False, type=int, help='How many rounds to simulate')
+    parser.add_argument('--polls', required=False, type=int, help='How many polls run for each binary')
 
     args = parser.parse_args()
 
@@ -739,7 +769,7 @@ def main():
 
     webroot_abs = os.path.abspath(args.webroot)
 
-    rotator = Rotator(round_length, webroot_abs, args.cbdir, args.team)
+    rotator = Rotator(round_length, webroot_abs, args.cbdir, args.team, args.polls)
     try:
         rotator.run(args.rounds)
     except KeyboardInterrupt:

@@ -413,6 +413,8 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             ext = form_dict["hash"]
             timestamp = int(time.time())
             prefix = "%s%s%s" % (os.curdir, os.sep, self.path)
+            logging.debug("prefix: %s", prefix)
+            logging.debug("path: %s", os.path.join(prefix, "%s_%s_%d" % (form_dict["file"], ext, timestamp)))
             write_from_file(form_value.file, os.path.join(prefix, "%s_%s_%d" % (form_dict["file"], ext, timestamp)))
 
         resp['round'] = get_current_round() 

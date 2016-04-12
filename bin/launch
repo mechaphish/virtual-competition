@@ -9,6 +9,7 @@ CHALLENGES="/vagrant/shared/cgc-challenges"
 WEBROOT="/vagrant/shared/webroot"
 ROUNDLEN=${ROUNDLEN-300}
 ROUNDS=${ROUNDS-100}
+POLLS=${POLLS-100}
 
 function running {
     if pgrep $1 > /dev/null && [ -e /tmp/${1}.pid ] ; then
@@ -43,6 +44,7 @@ function start {
         # Note: run only one of these! This is the real round-by-round simulation
         "$MYDIR/ti-rotate" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
                            --roundlen "$ROUNDLEN" --team 6 --rounds "$ROUNDS" \
+                           --polls "$POLLS" \
                            --log /tmp/ti-rotate.log \
                            --debug >/tmp/ti-rotate.stdout 2>/tmp/ti-rotate.stderr &
         echo $! > /tmp/ti-rotate.pid
