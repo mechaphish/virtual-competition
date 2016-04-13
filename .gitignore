@@ -1,2 +1,3 @@
 /shared/
 /.vagrant/
+/bin/cbtest_wrapper.py
