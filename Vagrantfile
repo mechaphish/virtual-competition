@@ -29,6 +29,7 @@ Vagrant.configure(2) do |config|
             node.vm.provision :shell, path: "bin/compile"
             node.vm.provision :shell, inline: "sudo dpkg -i /vagrant/pkgs/multitail_5.2.8-1_i386.deb"
             node.vm.provision :shell, inline: "echo 'check_mail:0' > /home/vagrant/.multitailrc"
+            node.vm.provision :file, source: "../tester/cbtest_wrapper.py", destination: "/vagrant/bin/cbtest_wrapper.py"
             if name == 'ti'
                 node.vm.network "forwarded_port", guest: 8888, host: 8888
             end

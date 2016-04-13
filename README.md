@@ -1,12 +1,19 @@
 # Virtual Competition
 
-## Launch
+## Dependencies
+
+* Vagrant >= 1.8.1
+* VirtualBox >= 5.0
+* [tester](git@git.seclab.cs.ucsb.edu:cgc/tester.git)
+
+## Run
 
 To initialize VMs and start the competition:
+
 ```
 vagrant up
 vagrant ssh ti
-/vagrant/bin/launch start
+/vagrant/bin/launch start # default options: ROUNDLEN=300 POLLS=100 ROUNDS=100
 ```
 
 Re-run provision:
