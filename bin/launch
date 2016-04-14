@@ -10,6 +10,8 @@ WEBROOT="/vagrant/shared/webroot"
 ROUNDLEN=${ROUNDLEN-300}
 ROUNDS=${ROUNDS-100}
 POLLS=${POLLS-100}
+CS_LIMIT=${CS_LIMIT-30}
+CS_ROUNDS_DURATION=${CS_ROUNDS_DURATION-10}
 
 function running {
     if pgrep $1 > /dev/null && [ -e /tmp/${1}.pid ] ; then
@@ -45,6 +47,7 @@ function start {
         "$MYDIR/ti-rotate" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
                            --roundlen "$ROUNDLEN" --team 6 --rounds "$ROUNDS" \
                            --polls "$POLLS" \
+                           --cs-limit "$CS_LIMIT" --cs-rounds-duration "$CS_ROUNDS_DURATION" \
                            --log /tmp/ti-rotate.log \
                            --debug >/tmp/ti-rotate.stdout 2>/tmp/ti-rotate.stderr &
         echo $! > /tmp/ti-rotate.pid

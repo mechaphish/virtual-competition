@@ -90,7 +90,14 @@ def is_locked(path):
     return result
 
 class Rotator(object):
-    def __init__(self, seconds, webroot, cbdir, team, polls):
+    # Binary status
+    NEW = 'new'
+    DOWN = 'down'
+    FIELDED = 'fielded'
+    SUBMITTED_WHEN_NEW = 'submitted_when_new'
+    SUBMITTED = 'submitted'
+
+    def __init__(self, seconds, webroot, cbdir, team, polls, cs_limit, cs_rounds_duration):
         self.round_length = seconds
 
         #where files are served from, where we need to save our json
@@ -98,6 +105,9 @@ class Rotator(object):
         self.initial_cbdir = cbdir
 
         self.polls = polls
+
+        self.cs_limit = cs_limit
+        self.cs_rounds_duration = cs_rounds_duration
 
         self.round_num = 0
 
@@ -109,35 +119,39 @@ class Rotator(object):
         self.precompiled_cbs = defaultdict(list)
 
         self.teams = [i for i in range(1, 8)]
-        self.installed_cbs = {team:{} for team in self.teams}
         self.installed_filters = {team:{} for team in self.teams}
         self.scores = {i:0 for i in self.teams}
         self.signals = [signal.SIGILL, signal.SIGSEGV, signal.SIGBUS]
 
-        self.my_cbs = self.installed_cbs[self.my_team]
         self.my_filters = self.installed_filters[self.my_team]
-        self.my_cbs_status = {} # CSID: down, fielded
 
         try_makedirs(self.web_root)
 
         self.write_round_num()
-        self.install_cbs(cbdir)
-        self.install_filters()
 
     def write_round_num(self):
         with open(os.path.join(self.web_root, "cgc-round"), "w") as round_file:
             round_file.write("%d" % self.round_num)
 
-    def install_cbs(self, cbdir):
+    def install_cbs(self):
+        cbdir = self.initial_cbdir
         #The binaries in this directory form the valid set of cbs for
         #the purposes of the CFE simulator
         (dirpath, dirnames, _) = os.walk(cbdir).next()
+        binaries = random.sample(dirnames, min(len(dirnames), self.cs_limit))
+        logging.debug("NEW CHALLENGE SETS OUT! %s", binaries)
         #TODO: now copy these into the round 0 evaluation directory
 
         install_time = int(time.time())
 
+        # reset cb variables
+        self.csets = {}
+        self.installed_cbs = {team:{} for team in self.teams}
+        self.my_cbs = self.installed_cbs[self.my_team]
+        self.my_cbs_status = {} # CSID: new, fielded, down, fielded
+
         #need to setup a dict that represents csids and number of associated cbs
-        for csid in dirnames:
+        for csid in binaries:
             (csidpath, _, cbnames) = os.walk(os.path.join(cbdir, csid, "bin")).next()
             for cb in cbnames:
                 self.precompiled_cbs[csid].append(os.path.join(cbdir, csid, "bin", cb))
@@ -147,7 +161,7 @@ class Rotator(object):
                     self.csets[csid] += 1
                 else:
                     self.csets[csid] = 1
-                self.my_cbs_status[csid] = 'fielded'
+                self.my_cbs_status[csid] = self.NEW
 
                 cb_loc = os.path.join(csidpath, cb)
                 cbhash = hash_file(cb_loc)
@@ -470,7 +484,10 @@ class Rotator(object):
             # ADDED: copy rcbs to different folder for cb-test inspection
             _, _, csid, _, _ = self.cbinfo_from_name(rcb[1]['path'])
             shutil.copyfile(src_path, os.path.join(fielded_path, csid))
-            self.my_cbs_status[csid] = 'down'
+            if self.my_cbs_status[csid] == self.NEW:
+                self.my_cbs_status[csid] = self.SUBMITTED_WHEN_NEW
+            else:
+                self.my_cbs_status[csid] = self.SUBMITTED
             # /ADDED
             os.rename(src_path, dst_path)
             #update path to reflect new location
@@ -487,10 +504,22 @@ class Rotator(object):
 
         for csid in cbnames:
             rcb_path = os.path.join(dirpath, csid)
-            if self.my_cbs_status[csid] == 'fielded':
+            if self.my_cbs_status[csid] == self.FIELDED:
                 self.test_fielded_rcb(csid)
-            elif self.my_cbs_status[csid] == 'down':
-                self.my_cbs_status[csid] = 'fielded'
+
+    def change_my_cbs_status(self):
+        for csid in self.csets:
+            if self.my_cbs_status[csid] == self.NEW:
+                self.my_cbs_status[csid] = self.FIELDED
+
+            elif self.my_cbs_status[csid] == self.SUBMITTED_WHEN_NEW:
+                self.my_cbs_status[csid] = self.SUBMITTED
+
+            elif self.my_cbs_status[csid] == self.SUBMITTED:
+                self.my_cbs_status[csid] = self.DOWN
+
+            elif self.my_cbs_status[csid] == self.DOWN:
+                self.my_cbs_status[csid] = self.FIELDED
 
     def test_fielded_rcb(self, rcb):
         _, _, csid,  _, _ = self.cbinfo_from_name(rcb)
@@ -662,28 +691,24 @@ class Rotator(object):
             #make sure this round's evaluation directory exists
             path = os.path.join(self.web_root, "round", str(self.round_num), "evaluation", "cb")
             try_makedirs(path)
-            #move stuff to download directories
-            self.distribute_rcb(path)
 
-            path = os.path.join(self.web_root, "round", str(self.round_num), "evaluation", "ids")
-            try_makedirs(path)
-            self.distribute_ids(path)
+            # install CBs and rotate CBs every cs_limit rounds
+            if (self.round_num % self.cs_rounds_duration) == 0:
+                self.install_cbs()
+                self.install_filters()
 
-            self.distribute_pov()
+            # ADDED: field rcbs
+            self.field_rcb()
 
             #make sure this round's feedback directory exists
+            path = os.path.join(self.web_root, "round", str(self.round_num), "evaluation", "ids")
+            try_makedirs(path)
             path = os.path.join(self.web_root, "round", str(self.round_num), "feedback")
             try_makedirs(path)
 
             self.write_poll_feedback(path)
             self.write_pov_feedback(path)
             self.write_cb_feedback(path)
-
-            # DEBUG
-            logging.debug("self.my_cbs_status %s", self.my_cbs_status)
-
-            # ADDED: field rcbs
-            self.field_rcb()
 
             if self.round_num > 0:
                 self.update_scores()
@@ -693,6 +718,15 @@ class Rotator(object):
 
             #sleep until end of round
             time.sleep(self.round_length)
+
+            #move stuff to download directories
+            self.distribute_rcb(path)
+            self.distribute_ids(path)
+            self.distribute_pov()
+
+            # cbs state machine
+            logging.debug("MY CBS STATUS %s", self.my_cbs_status)
+            self.change_my_cbs_status()
 
             self.round_num += 1
             if rounds is not None and self.round_num >= rounds:
@@ -731,6 +765,10 @@ def main():
     parser.add_argument('--team', required=False, type=int, default=6, help='Simulate playing as the specified team (0-7)')
     parser.add_argument('--rounds', required=False, type=int, help='How many rounds to simulate')
     parser.add_argument('--polls', required=False, type=int, help='How many polls run for each binary')
+    parser.add_argument('--cs-limit', required=False, type=int, default=30,
+                              help='Number of CB sets available at once')
+    parser.add_argument('--cs-rounds-duration', required=False, type=int, default=10,
+                              help='Number of rounds before CB sets are changed')
 
     args = parser.parse_args()
 
@@ -769,7 +807,7 @@ def main():
 
     webroot_abs = os.path.abspath(args.webroot)
 
-    rotator = Rotator(round_length, webroot_abs, args.cbdir, args.team, args.polls)
+    rotator = Rotator(round_length, webroot_abs, args.cbdir, args.team, args.polls, args.cs_limit, args.cs_rounds_duration)
     try:
         rotator.run(args.rounds)
     except KeyboardInterrupt:

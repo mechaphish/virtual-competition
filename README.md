@@ -38,11 +38,12 @@ git pull upstream master
 
 ## Changelog
 
-**IMPORTANT:** All feedback and scoring is random!
+**IMPORTANT:** Scoring is random!
 
 Changes to DARPA's [virtual-competition](https://github.com/CyberGrandChallenge/virtual-competition):
 
+- better rounds simulation (RB down round on submission, dummy round on new CS release)
+- real poll feedbacks
 - disabled IDS submission, since we're not running the filter (TODO)
 - ti-rotate will also (re-)field official, possibly patched, binaries
 - Minor: ti-server checks `MAX_THROWS`, fixed size limits, defaults to our credentials
-- rb submission with rounds simulation and real poll feedbacks
