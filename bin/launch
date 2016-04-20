@@ -44,14 +44,13 @@ function start {
         rm -rf "$WEBROOT"
         mkdir "$WEBROOT"
         # Note: run only one of these! This is the real round-by-round simulation
-        "$MYDIR/ti-rotate" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
+        nohup "$MYDIR/ti-rotate" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
                            --roundlen "$ROUNDLEN" --team 6 --rounds "$ROUNDS" \
                            --polls "$POLLS" \
                            --cs-limit "$CS_LIMIT" --cs-rounds-duration "$CS_ROUNDS_DURATION" \
                            --log /tmp/ti-rotate.log \
                            --debug >/tmp/ti-rotate.stdout 2>/tmp/ti-rotate.stderr &
         echo $! > /tmp/ti-rotate.pid
-        disown
         echo "ti-rotate STARTED"
     fi
 
@@ -61,13 +60,13 @@ function start {
             exit 1
         fi
 
-        "$MYDIR/ti-server" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
+        nohup "$MYDIR/ti-server" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
                            --port 8888 \
                            --username "team-6" --password 9fb864f629eb4502edd795e5b7d5c3a0bac0aa8f56c183e3f795c523c0d4f82f \
                            --debug >/tmp/ti-server.stdout 2>/tmp/ti-server.stderr &
         echo $! > /tmp/ti-server.pid
-        disown
         echo "ti-server STARTED"
+        sleep 1                 # nohup takes time to start
     fi
 
     echo "Launched! For logs and info, see /tmp/ti-{rotate,server}.*"
