@@ -92,10 +92,10 @@ def is_locked(path):
 class Rotator(object):
     # Binary status
     NEW = 'new'
+    NEW2 = 'new2'
     DOWN = 'down'
     FIELDED = 'fielded'
     SUBMITTED_WHEN_NEW = 'submitted_when_new'
-    SUBMITTED = 'submitted'
 
     def __init__(self, seconds, webroot, cbdir, team, polls, cs_limit, cs_rounds_duration):
         self.round_length = seconds
@@ -484,10 +484,10 @@ class Rotator(object):
             # ADDED: copy rcbs to different folder for cb-test inspection
             _, _, csid, _, _ = self.cbinfo_from_name(rcb[1]['path'])
             shutil.copyfile(src_path, os.path.join(fielded_path, csid))
-            if self.my_cbs_status[csid] == self.NEW:
+            if (self.my_cbs_status[csid] in (self.NEW, self.NEW2)):
                 self.my_cbs_status[csid] = self.SUBMITTED_WHEN_NEW
             else:
-                self.my_cbs_status[csid] = self.SUBMITTED
+                self.my_cbs_status[csid] = self.DOWN
             # /ADDED
             os.rename(src_path, dst_path)
             #update path to reflect new location
@@ -510,12 +510,12 @@ class Rotator(object):
     def change_my_cbs_status(self):
         for csid in self.csets:
             if self.my_cbs_status[csid] == self.NEW:
+                self.my_cbs_status[csid] = self.NEW2
+
+            elif self.my_cbs_status[csid] == self.NEW2:
                 self.my_cbs_status[csid] = self.FIELDED
 
             elif self.my_cbs_status[csid] == self.SUBMITTED_WHEN_NEW:
-                self.my_cbs_status[csid] = self.SUBMITTED
-
-            elif self.my_cbs_status[csid] == self.SUBMITTED:
                 self.my_cbs_status[csid] = self.DOWN
 
             elif self.my_cbs_status[csid] == self.DOWN:
@@ -555,9 +555,14 @@ class Rotator(object):
 
             perf = {}
             results = os.path.join(results_path, csid)
+            data = None
             if os.path.isfile(results):
                 with open(results) as jsonfile:
-                    data = json.load(jsonfile)
+                    try:
+                        data = json.load(jsonfile)
+                    except ValueError:
+                        pass
+            if data is not None:
                 perf['time'] = int((data['tested']['scores']['ExecTimeOverhead'] + 1) * 100)
                 perf['memory'] = int((data['tested']['scores']['MemUseOverhead'] + 1) * 100)
                 logging.debug("Results %s: %s", results, perf)
@@ -688,10 +693,6 @@ class Rotator(object):
             self.write_round_num()
             logging.debug("%s Starting round: %d", time.ctime(self.round_time), self.round_num)
 
-            #make sure this round's evaluation directory exists
-            path = os.path.join(self.web_root, "round", str(self.round_num), "evaluation", "cb")
-            try_makedirs(path)
-
             # install CBs and rotate CBs every cs_limit rounds
             if (self.round_num % self.cs_rounds_duration) == 0:
                 self.install_cbs()
@@ -700,11 +701,18 @@ class Rotator(object):
             # ADDED: field rcbs
             self.field_rcb()
 
-            #make sure this round's feedback directory exists
-            path = os.path.join(self.web_root, "round", str(self.round_num), "evaluation", "ids")
-            try_makedirs(path)
+            #make sure this round's feedback and evaluation directories exist
+            cb_path = os.path.join(self.web_root, "round", str(self.round_num), "evaluation", "cb")
+            try_makedirs(cb_path)
+            ids_path = os.path.join(self.web_root, "round", str(self.round_num), "evaluation", "ids")
+            try_makedirs(ids_path)
             path = os.path.join(self.web_root, "round", str(self.round_num), "feedback")
             try_makedirs(path)
+
+            #move stuff to download directories
+            self.distribute_rcb(cb_path)
+            self.distribute_ids(ids_path)
+            self.distribute_pov()
 
             self.write_poll_feedback(path)
             self.write_pov_feedback(path)
@@ -716,19 +724,15 @@ class Rotator(object):
             #update status file
             self.write_status()
 
+            logging.debug("MY CBS STATUS %s", self.my_cbs_status)
             #sleep until end of round
             time.sleep(self.round_length)
 
-            #move stuff to download directories
-            self.distribute_rcb(path)
-            self.distribute_ids(path)
-            self.distribute_pov()
-
             # cbs state machine
-            logging.debug("MY CBS STATUS %s", self.my_cbs_status)
             self.change_my_cbs_status()
 
             self.round_num += 1
+            logging.debug("--------------------------------------------------------------------------------")
             if rounds is not None and self.round_num >= rounds:
                 break
 
