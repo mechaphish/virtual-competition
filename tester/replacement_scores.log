@@ -1,0 +1,1003 @@
+('NRFIN_00030', 'Sixth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.66  estim.: 0.51  (-0.15)
+             FileSizeOverhead DARPA: 1.21  estim.: 1.20  (-0.01)
+     ---       MemUseOverhead DARPA: 7.86  estim.: 7.42  (-0.44)
+                    PerfScore DARPA: 0.00  estim.: 0.00  (0.00)
+('NRFIN_00030', 'First Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.27  estim.: 0.14  (-0.13)
+             FileSizeOverhead DARPA: 0.03  estim.: 0.03  (-0.00)
+     ---       MemUseOverhead DARPA: 4.24  estim.: 4.03  (-0.21)
+                    PerfScore DARPA: 0.00  estim.: 0.00  (0.00)
+('NRFIN_00030', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: 0.25  estim.: 0.15  (-0.10)
+             FileSizeOverhead DARPA: 0.03  estim.: 0.03  (-0.00)
+     ---       MemUseOverhead DARPA: 4.28  estim.: 4.06  (-0.22)
+                    PerfScore DARPA: 0.00  estim.: 0.00  (0.00)
+('NRFIN_00030', 'Seventh Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.25  estim.: 0.14  (-0.11)
+             FileSizeOverhead DARPA: -0.01  estim.: -0.01  (0.00)
+     ---       MemUseOverhead DARPA: 4.41  estim.: 4.18  (-0.23)
+                    PerfScore DARPA: 0.00  estim.: 0.00  (0.00)
+('NRFIN_00030', 'Fourth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.33  estim.: 0.23  (-0.10)
+             FileSizeOverhead DARPA: 0.12  estim.: 0.11  (-0.01)
+     ---       MemUseOverhead DARPA: 4.57  estim.: 4.33  (-0.24)
+                    PerfScore DARPA: 0.00  estim.: 0.00  (0.00)
+('NRFIN_00030', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 18.62  estim.: 9.11  (-9.51)
+             FileSizeOverhead DARPA: -0.50  estim.: -0.50  (0.00)
+     ---       MemUseOverhead DARPA: 4.91  estim.: 4.64  (-0.27)
+                    PerfScore DARPA: 0.00  estim.: 0.00  (0.00)
+('NRFIN_00032', 'Second Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.70  estim.: 0.28  (-0.42)
+             FileSizeOverhead DARPA: 0.02  estim.: 0.03  (0.01)
+               MemUseOverhead DARPA: 0.01  estim.: 0.03  (0.02)
+     +++            PerfScore DARPA: 0.15  estim.: 0.51  (0.36)
+('NRFIN_00032', 'Sixth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.09  estim.: -0.10  (-0.19)
+             FileSizeOverhead DARPA: 3.56  estim.: 3.56  (0.00)
+               MemUseOverhead DARPA: 0.68  estim.: 0.52  (-0.16)
+                    PerfScore DARPA: 0.05  estim.: 0.05  (-0.00)
+('NRFIN_00032', 'First Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: -0.22  estim.: -0.92  (-0.70)
+             FileSizeOverhead DARPA: 0.42  estim.: 0.43  (0.01)
+               MemUseOverhead DARPA: -0.84  estim.: -0.93  (-0.09)
+                    PerfScore DARPA: 0.98  estim.: 0.97  (-0.01)
+('NRFIN_00032', 'Seventh Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.03  estim.: 0.02  (-0.01)
+             FileSizeOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.01  (0.01)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00032', 'Fourth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.06  estim.: 0.10  (0.04)
+             FileSizeOverhead DARPA: 0.40  estim.: 0.40  (-0.00)
+               MemUseOverhead DARPA: 0.45  estim.: 0.45  (-0.00)
+                    PerfScore DARPA: 0.30  estim.: 0.30  (0.00)
+('NRFIN_00032', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 1.04  estim.: -0.65  (-1.69)
+             FileSizeOverhead DARPA: 3.63  estim.: 3.63  (-0.00)
+               MemUseOverhead DARPA: -0.75  estim.: -0.87  (-0.12)
+                    PerfScore DARPA: 0.00  estim.: 0.05  (0.05)
+('NRFIN_00033', 'Third Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.01  estim.: -0.02  (-0.03)
+             FileSizeOverhead DARPA: -0.01  estim.: 0.00  (0.01)
+               MemUseOverhead DARPA: 0.62  estim.: 0.56  (-0.06)
+                    PerfScore DARPA: 0.19  estim.: 0.22  (0.03)
+('NRFIN_00033', 'Second Place Team - Finalist')
+Skipping, as the scoring algorithm is not the CQE one:  NOT ENOUGH DATA, DID ANY POLL PASS?
+('NRFIN_00033', 'Fifth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+             FileSizeOverhead DARPA: 0.00  estim.: 0.01  (0.01)
+               MemUseOverhead DARPA: 0.31  estim.: 0.28  (-0.03)
+                    PerfScore DARPA: 0.47  estim.: 0.52  (0.06)
+('NRFIN_00033', 'Sixth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.11  estim.: 0.05  (-0.06)
+             FileSizeOverhead DARPA: 0.64  estim.: 0.67  (0.03)
+               MemUseOverhead DARPA: 1.68  estim.: 1.49  (-0.19)
+                    PerfScore DARPA: 0.00  estim.: 0.00  (0.00)
+('NRFIN_00033', 'First Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+             FileSizeOverhead DARPA: 0.00  estim.: 0.02  (0.02)
+               MemUseOverhead DARPA: 0.25  estim.: 0.22  (-0.03)
+                    PerfScore DARPA: 0.57  estim.: 0.64  (0.07)
+('NRFIN_00033', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: 0.00  estim.: -0.00  (-0.00)
+             FileSizeOverhead DARPA: -0.01  estim.: 0.01  (0.02)
+               MemUseOverhead DARPA: 0.12  estim.: 0.10  (-0.02)
+                    PerfScore DARPA: 0.92  estim.: 0.98  (0.06)
+('NRFIN_00033', 'Seventh Place Team - Finalist')
+Skipping, as the scoring algorithm is not the CQE one:  NOT ENOUGH DATA, DID ANY POLL PASS?
+('NRFIN_00033', 'Fourth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.04  estim.: 0.02  (-0.02)
+             FileSizeOverhead DARPA: 0.02  estim.: 0.04  (0.02)
+     ---       MemUseOverhead DARPA: 2.29  estim.: 1.78  (-0.51)
+                    PerfScore DARPA: 0.00  estim.: 0.00  (0.00)
+('NRFIN_00033', 'Ninth Place Team')
+             ExecTimeOverhead DARPA: 0.28  estim.: 0.14  (-0.14)
+             FileSizeOverhead DARPA: -0.82  estim.: -0.81  (0.01)
+               MemUseOverhead DARPA: 0.74  estim.: 0.68  (-0.06)
+                    PerfScore DARPA: 0.13  estim.: 0.16  (0.03)
+('NRFIN_00034', 'Third Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 1.49  estim.: 0.38  (-1.11)
+             FileSizeOverhead DARPA: 0.10  estim.: 0.09  (-0.01)
+               MemUseOverhead DARPA: 0.62  estim.: 0.56  (-0.06)
+     +++            PerfScore DARPA: 0.00  estim.: 0.22  (0.22)
+('NRFIN_00034', 'Second Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.56  estim.: 0.08  (-0.48)
+             FileSizeOverhead DARPA: 0.01  estim.: 0.01  (-0.00)
+               MemUseOverhead DARPA: 0.12  estim.: 0.11  (-0.01)
+     +++            PerfScore DARPA: 0.22  estim.: 0.96  (0.74)
+('NRFIN_00034', 'Sixth Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 1.35  estim.: 0.77  (-0.58)
+             FileSizeOverhead DARPA: 0.92  estim.: 0.91  (-0.01)
+               MemUseOverhead DARPA: 1.91  estim.: 1.71  (-0.20)
+                    PerfScore DARPA: 0.00  estim.: 0.00  (0.00)
+('NRFIN_00034', 'First Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.65  estim.: 0.16  (-0.49)
+             FileSizeOverhead DARPA: 0.12  estim.: 0.11  (-0.01)
+               MemUseOverhead DARPA: 0.37  estim.: 0.33  (-0.04)
+     +++            PerfScore DARPA: 0.17  estim.: 0.43  (0.26)
+('NRFIN_00034', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: -0.04  estim.: 0.03  (0.07)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.00  (-0.00)
+               MemUseOverhead DARPA: 0.02  estim.: 0.03  (0.01)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00034', 'Seventh Place Team - Finalist')
+             ExecTimeOverhead DARPA: -0.03  estim.: 0.01  (0.04)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00034', 'Fourth Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.45  estim.: 0.18  (-0.27)
+             FileSizeOverhead DARPA: 0.08  estim.: 0.08  (-0.00)
+               MemUseOverhead DARPA: 0.43  estim.: 0.39  (-0.04)
+                    PerfScore DARPA: 0.30  estim.: 0.36  (0.06)
+('NRFIN_00034', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 1.29  estim.: 0.18  (-1.11)
+             FileSizeOverhead DARPA: -0.68  estim.: -0.67  (0.01)
+               MemUseOverhead DARPA: 0.71  estim.: 0.64  (-0.07)
+                    PerfScore DARPA: 0.00  estim.: 0.18  (0.18)
+('NRFIN_00035', 'Third Place Team - Finalist')
+             ExecTimeOverhead DARPA: -0.02  estim.: 0.02  (0.04)
+             FileSizeOverhead DARPA: 0.07  estim.: 0.06  (-0.01)
+               MemUseOverhead DARPA: 0.31  estim.: 0.29  (-0.02)
+                    PerfScore DARPA: 0.47  estim.: 0.49  (0.03)
+('NRFIN_00035', 'Second Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.34  estim.: 0.18  (-0.16)
+             FileSizeOverhead DARPA: 0.03  estim.: 0.03  (0.00)
+               MemUseOverhead DARPA: 0.06  estim.: 0.06  (-0.00)
+     +++            PerfScore DARPA: 0.42  estim.: 0.75  (0.32)
+('NRFIN_00035', 'Fifth Place Team - Finalist')
+             ExecTimeOverhead DARPA: -0.59  estim.: -0.51  (0.08)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+               MemUseOverhead DARPA: -0.01  estim.: 0.00  (0.01)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00035', 'Sixth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.09  estim.: 0.07  (-0.02)
+             FileSizeOverhead DARPA: 0.19  estim.: 0.19  (-0.00)
+               MemUseOverhead DARPA: 0.53  estim.: 0.50  (-0.03)
+                    PerfScore DARPA: 0.24  estim.: 0.26  (0.02)
+('NRFIN_00035', 'First Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.00  estim.: -0.02  (-0.02)
+             FileSizeOverhead DARPA: 0.02  estim.: 0.02  (-0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00035', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+             FileSizeOverhead DARPA: 0.03  estim.: 0.03  (0.00)
+               MemUseOverhead DARPA: 0.03  estim.: 0.03  (-0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00035', 'Eighth Place Team')
+             ExecTimeOverhead DARPA: 0.00  estim.: -0.02  (-0.02)
+             FileSizeOverhead DARPA: 0.04  estim.: 0.04  (-0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00035', 'Seventh Place Team - Finalist')
+             ExecTimeOverhead DARPA: -0.01  estim.: 0.01  (0.02)
+             FileSizeOverhead DARPA: 0.04  estim.: 0.03  (-0.01)
+               MemUseOverhead DARPA: 0.12  estim.: 0.12  (-0.00)
+                    PerfScore DARPA: 0.92  estim.: 0.93  (0.01)
+('NRFIN_00035', 'Fourth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.08  estim.: 0.09  (0.01)
+             FileSizeOverhead DARPA: 0.13  estim.: 0.13  (-0.00)
+               MemUseOverhead DARPA: 0.18  estim.: 0.18  (-0.00)
+                    PerfScore DARPA: 0.74  estim.: 0.74  (0.01)
+('NRFIN_00035', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 16.48  estim.: 10.38  (-6.10)
+             FileSizeOverhead DARPA: -0.70  estim.: -0.70  (0.00)
+               MemUseOverhead DARPA: 0.31  estim.: 0.29  (-0.02)
+                    PerfScore DARPA: 0.00  estim.: 0.00  (0.00)
+('NRFIN_00036', 'Third Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.42  estim.: 0.14  (-0.28)
+             FileSizeOverhead DARPA: -0.02  estim.: 0.01  (0.03)
+               MemUseOverhead DARPA: 0.32  estim.: 0.28  (-0.04)
+                    PerfScore DARPA: 0.33  estim.: 0.52  (0.19)
+('NRFIN_00036', 'Second Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.12  estim.: 0.07  (-0.05)
+             FileSizeOverhead DARPA: -0.05  estim.: -0.02  (0.03)
+               MemUseOverhead DARPA: -0.17  estim.: -0.14  (0.03)
+                    PerfScore DARPA: 0.92  estim.: 1.00  (0.08)
+('NRFIN_00036', 'Fifth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.03  estim.: 0.06  (0.03)
+             FileSizeOverhead DARPA: 0.00  estim.: 0.03  (0.03)
+               MemUseOverhead DARPA: 0.16  estim.: 0.14  (-0.02)
+                    PerfScore DARPA: 0.79  estim.: 0.85  (0.05)
+('NRFIN_00036', 'Sixth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.15  estim.: 0.07  (-0.08)
+             FileSizeOverhead DARPA: 0.14  estim.: 0.17  (0.03)
+               MemUseOverhead DARPA: 0.58  estim.: 0.50  (-0.08)
+                    PerfScore DARPA: 0.21  estim.: 0.26  (0.05)
+('NRFIN_00036', 'First Place Team - Finalist')
+             ExecTimeOverhead DARPA: -0.02  estim.: 0.01  (0.03)
+             FileSizeOverhead DARPA: -0.02  estim.: 0.02  (0.04)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00036', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: -0.01  estim.: 0.03  (0.04)
+             FileSizeOverhead DARPA: -0.01  estim.: 0.02  (0.03)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00036', 'Seventh Place Team - Finalist')
+             ExecTimeOverhead DARPA: -0.02  estim.: 0.02  (0.04)
+             FileSizeOverhead DARPA: 0.00  estim.: 0.03  (0.03)
+               MemUseOverhead DARPA: 0.16  estim.: 0.14  (-0.02)
+                    PerfScore DARPA: 0.79  estim.: 0.85  (0.05)
+('NRFIN_00036', 'Fourth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.14  estim.: 0.09  (-0.05)
+             FileSizeOverhead DARPA: 0.02  estim.: 0.05  (0.03)
+               MemUseOverhead DARPA: 0.16  estim.: 0.14  (-0.02)
+                    PerfScore DARPA: 0.79  estim.: 0.85  (0.05)
+('NRFIN_00036', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 1.76  estim.: 0.24  (-1.52)
+             FileSizeOverhead DARPA: -0.85  estim.: -0.84  (0.01)
+               MemUseOverhead DARPA: 0.66  estim.: 0.57  (-0.09)
+     +++            PerfScore DARPA: 0.00  estim.: 0.21  (0.21)
+('NRFIN_00037', 'Third Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 3.33  estim.: 0.29  (-3.04)
+             FileSizeOverhead DARPA: 0.01  estim.: 0.01  (0.00)
+               MemUseOverhead DARPA: 0.87  estim.: 0.68  (-0.19)
+                    PerfScore DARPA: 0.00  estim.: 0.16  (0.16)
+('NRFIN_00037', 'Second Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 1.12  estim.: 0.03  (-1.09)
+             FileSizeOverhead DARPA: -0.01  estim.: 0.00  (0.01)
+               MemUseOverhead DARPA: 0.16  estim.: 0.12  (-0.04)
+     +++            PerfScore DARPA: 0.00  estim.: 0.91  (0.91)
+('NRFIN_00037', 'Fifth Place Team - Finalist')
+             ExecTimeOverhead DARPA: -0.01  estim.: -0.02  (-0.01)
+             FileSizeOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00037', 'Twelfth Place Team')
+     +++     ExecTimeOverhead DARPA: -0.56  estim.: 0.01  (0.57)
+             FileSizeOverhead DARPA: -0.95  estim.: -0.95  (0.00)
+               MemUseOverhead DARPA: -0.13  estim.: -0.10  (0.03)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00037', 'Sixth Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.53  estim.: 0.15  (-0.38)
+             FileSizeOverhead DARPA: 0.13  estim.: 0.13  (0.00)
+     ---       MemUseOverhead DARPA: 1.00  estim.: 0.77  (-0.23)
+                    PerfScore DARPA: 0.00  estim.: 0.11  (0.11)
+('NRFIN_00037', 'First Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.17  estim.: -0.01  (-0.18)
+             FileSizeOverhead DARPA: -0.94  estim.: -0.93  (0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+     +++            PerfScore DARPA: 0.76  estim.: 1.00  (0.24)
+('NRFIN_00037', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+             FileSizeOverhead DARPA: -0.01  estim.: -0.00  (0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00037', 'Eighth Place Team')
+             ExecTimeOverhead DARPA: -0.01  estim.: 0.00  (0.01)
+             FileSizeOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00037', 'Seventh Place Team - Finalist')
+             ExecTimeOverhead DARPA: -0.01  estim.: -0.00  (0.01)
+             FileSizeOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00037', 'Fourth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.42  estim.: 0.37  (-0.05)
+             FileSizeOverhead DARPA: 0.02  estim.: 0.03  (0.01)
+               MemUseOverhead DARPA: 0.45  estim.: 0.35  (-0.10)
+                    PerfScore DARPA: 0.30  estim.: 0.39  (0.08)
+('NRFIN_00037', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 1.14  estim.: 0.01  (-1.13)
+             FileSizeOverhead DARPA: -0.92  estim.: -0.92  (0.00)
+     ---       MemUseOverhead DARPA: 1.16  estim.: 0.90  (-0.26)
+                    PerfScore DARPA: 0.00  estim.: 0.05  (0.05)
+('NRFIN_00038', 'Third Place Team - Finalist')
+     +++     ExecTimeOverhead DARPA: -0.81  estim.: -0.14  (0.67)
+             FileSizeOverhead DARPA: 0.06  estim.: 0.08  (0.02)
+               MemUseOverhead DARPA: 0.66  estim.: 0.60  (-0.06)
+                    PerfScore DARPA: 0.17  estim.: 0.20  (0.03)
+('NRFIN_00038', 'Second Place Team - Finalist')
+     +++     ExecTimeOverhead DARPA: -0.75  estim.: -0.22  (0.53)
+             FileSizeOverhead DARPA: -0.01  estim.: 0.01  (0.02)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00038', 'Sixth Place Team - Finalist')
+     +++     ExecTimeOverhead DARPA: -0.67  estim.: 0.22  (0.89)
+             FileSizeOverhead DARPA: 0.94  estim.: 0.98  (0.04)
+               MemUseOverhead DARPA: 1.62  estim.: 1.48  (-0.14)
+                    PerfScore DARPA: 0.00  estim.: 0.00  (0.00)
+('NRFIN_00038', 'First Place Team - Finalist')
+     +++     ExecTimeOverhead DARPA: -0.84  estim.: -0.21  (0.63)
+             FileSizeOverhead DARPA: 0.01  estim.: 0.03  (0.02)
+               MemUseOverhead DARPA: 0.11  estim.: 0.10  (-0.01)
+                    PerfScore DARPA: 0.96  estim.: 1.00  (0.04)
+('NRFIN_00038', 'Tenth Place Team')
+     +++     ExecTimeOverhead DARPA: -0.85  estim.: -0.27  (0.58)
+             FileSizeOverhead DARPA: -0.01  estim.: 0.01  (0.02)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00038', 'Seventh Place Team - Finalist')
+     +++     ExecTimeOverhead DARPA: -0.84  estim.: -0.26  (0.58)
+             FileSizeOverhead DARPA: 0.00  estim.: 0.02  (0.02)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00038', 'Fourth Place Team - Finalist')
+     +++     ExecTimeOverhead DARPA: -0.79  estim.: -0.13  (0.66)
+             FileSizeOverhead DARPA: 0.10  estim.: 0.12  (0.02)
+               MemUseOverhead DARPA: 0.27  estim.: 0.25  (-0.02)
+                    PerfScore DARPA: 0.53  estim.: 0.57  (0.04)
+('NRFIN_00038', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 24693.04  estim.: -0.17  (-24693.21)
+             FileSizeOverhead DARPA: -0.62  estim.: -0.61  (0.01)
+               MemUseOverhead DARPA: 0.82  estim.: 0.72  (-0.10)
+                    PerfScore DARPA: 0.00  estim.: 0.14  (0.14)
+('NRFIN_00039', 'Third Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.84  estim.: 0.23  (-0.61)
+             FileSizeOverhead DARPA: 0.00  estim.: 0.03  (0.03)
+               MemUseOverhead DARPA: 0.34  estim.: 0.32  (-0.02)
+     +++            PerfScore DARPA: 0.08  estim.: 0.45  (0.37)
+('NRFIN_00039', 'Second Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.39  estim.: 0.07  (-0.32)
+             FileSizeOverhead DARPA: -0.05  estim.: -0.02  (0.03)
+               MemUseOverhead DARPA: -0.11  estim.: -0.10  (0.01)
+     +++            PerfScore DARPA: 0.36  estim.: 1.00  (0.64)
+('NRFIN_00039', 'Fifth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+             FileSizeOverhead DARPA: 0.00  estim.: 0.03  (0.03)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00039', 'Sixth Place Team - Finalist')
+Skipping, as the scoring algorithm is not the CQE one:  NOT ENOUGH DATA, DID ANY POLL PASS?
+('NRFIN_00039', 'First Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.01  estim.: -0.02  (-0.03)
+             FileSizeOverhead DARPA: -0.02  estim.: 0.01  (0.03)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00039', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: -0.01  estim.: -0.01  (-0.00)
+             FileSizeOverhead DARPA: -0.01  estim.: 0.02  (0.03)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00039', 'Eighth Place Team')
+             ExecTimeOverhead DARPA: 0.09  estim.: 0.02  (-0.07)
+             FileSizeOverhead DARPA: 0.00  estim.: 0.03  (0.03)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00039', 'Seventh Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 1.60  estim.: 0.51  (-1.09)
+             FileSizeOverhead DARPA: 0.04  estim.: 0.07  (0.03)
+               MemUseOverhead DARPA: 0.22  estim.: 0.21  (-0.01)
+     +++            PerfScore DARPA: 0.00  estim.: 0.26  (0.26)
+('NRFIN_00039', 'Fourth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.27  estim.: 0.08  (-0.19)
+             FileSizeOverhead DARPA: 0.01  estim.: 0.05  (0.04)
+     ---       MemUseOverhead DARPA: 1.46  estim.: 1.25  (-0.21)
+                    PerfScore DARPA: 0.00  estim.: 0.00  (0.00)
+('NRFIN_00039', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 1.02  estim.: 0.20  (-0.82)
+             FileSizeOverhead DARPA: -0.85  estim.: -0.84  (0.01)
+               MemUseOverhead DARPA: 0.50  estim.: 0.47  (-0.03)
+     +++            PerfScore DARPA: 0.00  estim.: 0.29  (0.29)
+('NRFIN_00040', 'Third Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 2.41  estim.: 0.52  (-1.89)
+             FileSizeOverhead DARPA: 0.02  estim.: 0.02  (-0.00)
+               MemUseOverhead DARPA: 0.10  estim.: 0.15  (0.05)
+     +++            PerfScore DARPA: 0.00  estim.: 0.24  (0.24)
+('NRFIN_00040', 'Second Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 1.26  estim.: 0.18  (-1.08)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.00  (-0.00)
+               MemUseOverhead DARPA: -0.06  estim.: -0.01  (0.05)
+     +++            PerfScore DARPA: 0.00  estim.: 0.74  (0.74)
+('NRFIN_00040', 'Fifth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.06  estim.: 0.09  (0.03)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.00  (-0.00)
+               MemUseOverhead DARPA: 0.01  estim.: 0.06  (0.05)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00040', 'Sixth Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 1.55  estim.: 0.29  (-1.26)
+             FileSizeOverhead DARPA: 0.11  estim.: 0.11  (-0.00)
+               MemUseOverhead DARPA: 0.22  estim.: 0.27  (0.05)
+     +++            PerfScore DARPA: 0.00  estim.: 0.49  (0.49)
+('NRFIN_00040', 'First Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.03  estim.: 0.04  (0.01)
+             FileSizeOverhead DARPA: 0.01  estim.: 0.01  (-0.00)
+               MemUseOverhead DARPA: -0.01  estim.: 0.03  (0.04)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00040', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: 0.01  estim.: 0.14  (0.13)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.00  (-0.00)
+               MemUseOverhead DARPA: 0.03  estim.: 0.07  (0.04)
+                    PerfScore DARPA: 1.00  estim.: 0.85  (-0.15)
+('NRFIN_00040', 'Eighth Place Team')
+     ---     ExecTimeOverhead DARPA: 0.98  estim.: 0.22  (-0.76)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.04  (0.04)
+     +++            PerfScore DARPA: 0.01  estim.: 0.65  (0.64)
+('NRFIN_00040', 'Seventh Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.01  estim.: 0.02  (0.01)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+               MemUseOverhead DARPA: 0.12  estim.: 0.17  (0.05)
+                    PerfScore DARPA: 0.92  estim.: 0.78  (-0.15)
+('NRFIN_00040', 'Fourth Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 1.10  estim.: 0.28  (-0.82)
+             FileSizeOverhead DARPA: 0.09  estim.: 0.09  (-0.00)
+               MemUseOverhead DARPA: 0.10  estim.: 0.15  (0.05)
+     +++            PerfScore DARPA: 0.00  estim.: 0.51  (0.51)
+('NRFIN_00040', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 1.32  estim.: 0.29  (-1.03)
+             FileSizeOverhead DARPA: -0.78  estim.: -0.78  (0.00)
+               MemUseOverhead DARPA: 0.17  estim.: 0.22  (0.05)
+     +++            PerfScore DARPA: 0.00  estim.: 0.51  (0.51)
+('NRFIN_00041', 'Third Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.98  estim.: 0.34  (-0.64)
+             FileSizeOverhead DARPA: 0.07  estim.: 0.07  (-0.00)
+               MemUseOverhead DARPA: 0.44  estim.: 0.40  (-0.04)
+     +++            PerfScore DARPA: 0.01  estim.: 0.35  (0.34)
+('NRFIN_00041', 'Second Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.42  estim.: 0.12  (-0.30)
+             FileSizeOverhead DARPA: 0.01  estim.: 0.01  (0.00)
+               MemUseOverhead DARPA: 0.11  estim.: 0.10  (-0.01)
+     +++            PerfScore DARPA: 0.33  estim.: 0.92  (0.59)
+('NRFIN_00041', 'Fifth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.06  estim.: 0.03  (-0.03)
+             FileSizeOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00041', 'Sixth Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.62  estim.: 0.23  (-0.39)
+             FileSizeOverhead DARPA: 0.16  estim.: 0.15  (-0.01)
+               MemUseOverhead DARPA: 0.27  estim.: 0.25  (-0.02)
+     +++            PerfScore DARPA: 0.19  estim.: 0.57  (0.38)
+('NRFIN_00041', 'First Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.00  estim.: 0.09  (0.09)
+             FileSizeOverhead DARPA: 0.06  estim.: 0.06  (-0.00)
+               MemUseOverhead DARPA: 0.11  estim.: 0.10  (-0.01)
+                    PerfScore DARPA: 0.96  estim.: 1.00  (0.04)
+('NRFIN_00041', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: -0.01  estim.: 0.00  (0.01)
+             FileSizeOverhead DARPA: 0.03  estim.: 0.03  (-0.00)
+               MemUseOverhead DARPA: 0.05  estim.: 0.05  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00041', 'Eighth Place Team')
+             ExecTimeOverhead DARPA: 0.07  estim.: -0.01  (-0.08)
+             FileSizeOverhead DARPA: 0.04  estim.: 0.03  (-0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('NRFIN_00041', 'Seventh Place Team - Finalist')
+Skipping, as the scoring algorithm is not the CQE one:  NOT ENOUGH DATA, DID ANY POLL PASS?
+('NRFIN_00041', 'Fourth Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.30  estim.: 0.10  (-0.20)
+             FileSizeOverhead DARPA: 0.08  estim.: 0.08  (-0.00)
+               MemUseOverhead DARPA: 0.27  estim.: 0.25  (-0.02)
+                    PerfScore DARPA: 0.48  estim.: 0.57  (0.09)
+('NRFIN_00041', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 2.46  estim.: 0.74  (-1.72)
+             FileSizeOverhead DARPA: -0.55  estim.: -0.55  (-0.00)
+               MemUseOverhead DARPA: 0.88  estim.: 0.80  (-0.08)
+                    PerfScore DARPA: 0.00  estim.: 0.10  (0.10)
+('NRFIN_00042', 'Third Place Team - Finalist')
+Skipping, as the scoring algorithm is not the CQE one:  NOT ENOUGH DATA, DID ANY POLL PASS?
+('NRFIN_00042', 'Second Place Team - Finalist')
+Skipping, as the scoring algorithm is not the CQE one:  NOT ENOUGH DATA, DID ANY POLL PASS?
+('NRFIN_00042', 'Fifth Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.30  estim.: -0.02  (-0.32)
+             FileSizeOverhead DARPA: -0.01  estim.: -0.01  (0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+     +++            PerfScore DARPA: 0.48  estim.: 1.00  (0.52)
+('NRFIN_00042', 'Sixth Place Team - Finalist')
+Skipping, as the scoring algorithm is not the CQE one:  NOT ENOUGH DATA, DID ANY POLL PASS?
+('NRFIN_00042', 'First Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.26  estim.: 0.10  (-0.16)
+             FileSizeOverhead DARPA: 0.15  estim.: 0.15  (-0.00)
+               MemUseOverhead DARPA: 0.31  estim.: 0.29  (-0.02)
+                    PerfScore DARPA: 0.47  estim.: 0.50  (0.03)
+('NRFIN_00042', 'Tenth Place Team')
+Skipping, as the scoring algorithm is not the CQE one:  NOT ENOUGH DATA, DID ANY POLL PASS?
+('NRFIN_00042', 'Seventh Place Team - Finalist')
+             ExecTimeOverhead DARPA: -0.02  estim.: -0.01  (0.01)
+             FileSizeOverhead DARPA: -0.01  estim.: -0.01  (0.00)
+               MemUseOverhead DARPA: 0.13  estim.: 0.12  (-0.01)
+                    PerfScore DARPA: 0.89  estim.: 0.93  (0.05)
+('NRFIN_00042', 'Fourth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.16  estim.: 0.05  (-0.11)
+             FileSizeOverhead DARPA: 0.04  estim.: 0.04  (-0.00)
+               MemUseOverhead DARPA: 0.35  estim.: 0.31  (-0.04)
+                    PerfScore DARPA: 0.41  estim.: 0.46  (0.05)
+('NRFIN_00042', 'Ninth Place Team')
+             ExecTimeOverhead DARPA: -0.03  estim.: -0.02  (0.01)
+             FileSizeOverhead DARPA: -0.01  estim.: -0.01  (0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00007', 'Third Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.03  estim.: 0.08  (0.05)
+             FileSizeOverhead DARPA: 0.03  estim.: 0.03  (-0.00)
+               MemUseOverhead DARPA: 0.03  estim.: 0.05  (0.02)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00007', 'Second Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.61  estim.: 0.06  (-0.55)
+             FileSizeOverhead DARPA: 0.01  estim.: 0.00  (-0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.01  (0.01)
+     +++            PerfScore DARPA: 0.19  estim.: 1.00  (0.81)
+('YAN01_00007', 'Fifth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.03  estim.: -0.02  (-0.05)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.01  (0.01)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00007', 'Sixth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.14  estim.: 0.22  (0.08)
+             FileSizeOverhead DARPA: 0.59  estim.: 0.59  (-0.00)
+               MemUseOverhead DARPA: 0.05  estim.: 0.07  (0.02)
+                    PerfScore DARPA: 0.83  estim.: 0.64  (-0.19)
+('YAN01_00007', 'First Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+             FileSizeOverhead DARPA: 0.02  estim.: 0.01  (-0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.02  (0.02)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00007', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: 0.00  estim.: 0.02  (0.02)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.00  (-0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.02  (0.02)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00007', 'Eighth Place Team')
+             ExecTimeOverhead DARPA: 0.00  estim.: -0.02  (-0.02)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.01  (0.01)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00007', 'Seventh Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+             FileSizeOverhead DARPA: 0.04  estim.: 0.04  (-0.00)
+               MemUseOverhead DARPA: 0.01  estim.: 0.02  (0.01)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00007', 'Fourth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.01  estim.: 0.05  (0.04)
+             FileSizeOverhead DARPA: 0.09  estim.: 0.09  (-0.00)
+               MemUseOverhead DARPA: 0.01  estim.: 0.02  (0.01)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00007', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 0.96  estim.: 0.27  (-0.69)
+             FileSizeOverhead DARPA: -0.73  estim.: -0.73  (0.00)
+               MemUseOverhead DARPA: 0.02  estim.: 0.03  (0.01)
+     +++            PerfScore DARPA: 0.02  estim.: 0.53  (0.51)
+('YAN01_00009', 'Third Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 1.56  estim.: 0.16  (-1.40)
+             FileSizeOverhead DARPA: 0.01  estim.: 0.00  (-0.01)
+               MemUseOverhead DARPA: 0.29  estim.: 0.26  (-0.03)
+     +++            PerfScore DARPA: 0.00  estim.: 0.56  (0.56)
+('YAN01_00009', 'Second Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.77  estim.: 0.01  (-0.76)
+             FileSizeOverhead DARPA: -0.01  estim.: -0.02  (-0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+     +++            PerfScore DARPA: 0.11  estim.: 1.00  (0.89)
+('YAN01_00009', 'Fifth Place Team - Finalist')
+             ExecTimeOverhead DARPA: -0.16  estim.: 0.01  (0.17)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+               MemUseOverhead DARPA: -0.07  estim.: -0.01  (0.06)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00009', 'Sixth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.21  estim.: 0.29  (0.08)
+             FileSizeOverhead DARPA: 0.34  estim.: 0.33  (-0.01)
+               MemUseOverhead DARPA: 0.65  estim.: 0.63  (-0.02)
+                    PerfScore DARPA: 0.17  estim.: 0.18  (0.01)
+('YAN01_00009', 'First Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 1.63  estim.: 0.11  (-1.52)
+             FileSizeOverhead DARPA: 0.05  estim.: 0.05  (-0.00)
+               MemUseOverhead DARPA: 0.07  estim.: 0.07  (0.00)
+     +++            PerfScore DARPA: 0.00  estim.: 0.98  (0.98)
+('YAN01_00009', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: -0.03  estim.: 0.06  (0.09)
+             FileSizeOverhead DARPA: 0.02  estim.: 0.01  (-0.01)
+               MemUseOverhead DARPA: 0.05  estim.: 0.05  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00009', 'Seventh Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.49  estim.: 0.07  (-0.42)
+             FileSizeOverhead DARPA: 0.01  estim.: 0.01  (-0.00)
+               MemUseOverhead DARPA: 0.18  estim.: 0.16  (-0.02)
+     +++            PerfScore DARPA: 0.27  estim.: 0.79  (0.52)
+('YAN01_00009', 'Fourth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.13  estim.: 0.05  (-0.08)
+             FileSizeOverhead DARPA: 0.06  estim.: 0.05  (-0.01)
+               MemUseOverhead DARPA: 0.11  estim.: 0.11  (-0.00)
+                    PerfScore DARPA: 0.89  estim.: 0.98  (0.09)
+('YAN01_00009', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 1.19  estim.: 0.04  (-1.15)
+             FileSizeOverhead DARPA: -0.60  estim.: -0.60  (-0.00)
+               MemUseOverhead DARPA: 0.28  estim.: 0.26  (-0.02)
+     +++            PerfScore DARPA: 0.00  estim.: 0.56  (0.56)
+('YAN01_00010', 'Third Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.96  estim.: 0.11  (-0.85)
+             FileSizeOverhead DARPA: 0.04  estim.: 0.04  (-0.00)
+               MemUseOverhead DARPA: 0.75  estim.: 0.60  (-0.15)
+                    PerfScore DARPA: 0.02  estim.: 0.20  (0.18)
+('YAN01_00010', 'Fifth Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 1.66  estim.: 0.03  (-1.63)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+     +++            PerfScore DARPA: 0.00  estim.: 1.00  (1.00)
+('YAN01_00010', 'Twelfth Place Team')
+Skipping, as the scoring algorithm is not the CQE one:  NOT ENOUGH DATA, DID ANY POLL PASS?
+('YAN01_00010', 'Thirteenth Place Team')
+             ExecTimeOverhead DARPA: -0.01  estim.: 0.02  (0.03)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00010', 'Sixth Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.58  estim.: 0.09  (-0.49)
+             FileSizeOverhead DARPA: 0.24  estim.: 0.23  (-0.01)
+               MemUseOverhead DARPA: 0.62  estim.: 0.50  (-0.12)
+                    PerfScore DARPA: 0.19  estim.: 0.26  (0.07)
+('YAN01_00010', 'First Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.00  estim.: -0.12  (-0.12)
+             FileSizeOverhead DARPA: 0.02  estim.: 0.02  (-0.00)
+               MemUseOverhead DARPA: -0.25  estim.: -0.20  (0.05)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00010', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: 0.02  estim.: -0.00  (-0.02)
+             FileSizeOverhead DARPA: 0.04  estim.: 0.04  (-0.00)
+               MemUseOverhead DARPA: 0.12  estim.: 0.10  (-0.02)
+                    PerfScore DARPA: 0.92  estim.: 1.00  (0.08)
+('YAN01_00010', 'Seventh Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.00  estim.: 0.06  (0.06)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+               MemUseOverhead DARPA: 0.25  estim.: 0.20  (-0.05)
+                    PerfScore DARPA: 0.57  estim.: 0.68  (0.11)
+('YAN01_00010', 'Fourth Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.42  estim.: 0.03  (-0.39)
+             FileSizeOverhead DARPA: 0.02  estim.: 0.01  (-0.01)
+               MemUseOverhead DARPA: 0.37  estim.: 0.30  (-0.07)
+                    PerfScore DARPA: 0.33  estim.: 0.48  (0.15)
+('YAN01_00010', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 4.61  estim.: 0.19  (-4.42)
+             FileSizeOverhead DARPA: -0.90  estim.: -0.90  (0.00)
+               MemUseOverhead DARPA: 0.50  estim.: 0.40  (-0.10)
+     +++            PerfScore DARPA: 0.00  estim.: 0.35  (0.35)
+('YAN01_00011', 'Third Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 1.31  estim.: 0.39  (-0.92)
+             FileSizeOverhead DARPA: 0.02  estim.: 0.02  (-0.00)
+               MemUseOverhead DARPA: 0.40  estim.: 0.35  (-0.05)
+     +++            PerfScore DARPA: 0.00  estim.: 0.36  (0.36)
+('YAN01_00011', 'Second Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.47  estim.: 0.08  (-0.39)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+     +++            PerfScore DARPA: 0.28  estim.: 1.00  (0.72)
+('YAN01_00011', 'Fifth Place Team - Finalist')
+             ExecTimeOverhead DARPA: -0.01  estim.: 0.18  (0.19)
+             FileSizeOverhead DARPA: -0.01  estim.: -0.01  (0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+     ---            PerfScore DARPA: 1.00  estim.: 0.75  (-0.25)
+('YAN01_00011', 'Sixth Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.69  estim.: 0.35  (-0.34)
+             FileSizeOverhead DARPA: 0.35  estim.: 0.34  (-0.01)
+               MemUseOverhead DARPA: 0.93  estim.: 0.83  (-0.10)
+                    PerfScore DARPA: 0.03  estim.: 0.09  (0.05)
+('YAN01_00011', 'First Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.15  estim.: 0.02  (-0.13)
+             FileSizeOverhead DARPA: 0.03  estim.: 0.03  (-0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 0.82  estim.: 1.00  (0.18)
+('YAN01_00011', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: 0.00  estim.: 0.07  (0.07)
+             FileSizeOverhead DARPA: 0.04  estim.: 0.03  (-0.01)
+               MemUseOverhead DARPA: 0.06  estim.: 0.06  (-0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00011', 'Seventh Place Team - Finalist')
+             ExecTimeOverhead DARPA: -0.01  estim.: 0.02  (0.03)
+             FileSizeOverhead DARPA: -0.01  estim.: -0.01  (0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00011', 'Fourth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.05  estim.: 0.14  (0.09)
+             FileSizeOverhead DARPA: 0.03  estim.: 0.02  (-0.01)
+               MemUseOverhead DARPA: 0.19  estim.: 0.17  (-0.02)
+                    PerfScore DARPA: 0.71  estim.: 0.75  (0.04)
+('YAN01_00011', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 0.97  estim.: 0.23  (-0.74)
+             FileSizeOverhead DARPA: -0.81  estim.: -0.81  (0.00)
+               MemUseOverhead DARPA: 0.47  estim.: 0.42  (-0.05)
+     +++            PerfScore DARPA: 0.01  estim.: 0.33  (0.32)
+('YAN01_00012', 'Third Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 0.52  estim.: 0.12  (-0.40)
+             FileSizeOverhead DARPA: 0.03  estim.: 0.03  (-0.00)
+               MemUseOverhead DARPA: 0.62  estim.: 0.52  (-0.10)
+                    PerfScore DARPA: 0.19  estim.: 0.25  (0.06)
+('YAN01_00012', 'Second Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.05  estim.: 0.07  (0.02)
+             FileSizeOverhead DARPA: -0.01  estim.: -0.01  (0.00)
+               MemUseOverhead DARPA: 0.41  estim.: 0.35  (-0.06)
+                    PerfScore DARPA: 0.34  estim.: 0.42  (0.08)
+('YAN01_00012', 'Fifth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.02  estim.: -0.01  (-0.03)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00012', 'Twelfth Place Team')
+             ExecTimeOverhead DARPA: -0.01  estim.: -0.02  (-0.01)
+             FileSizeOverhead DARPA: 0.00  estim.: -0.01  (-0.01)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00012', 'Sixth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.17  estim.: 0.17  (-0.00)
+             FileSizeOverhead DARPA: 0.22  estim.: 0.21  (-0.01)
+     ---       MemUseOverhead DARPA: 1.36  estim.: 1.12  (-0.24)
+                    PerfScore DARPA: 0.00  estim.: 0.00  (0.00)
+('YAN01_00012', 'First Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.04  estim.: -0.02  (-0.06)
+             FileSizeOverhead DARPA: -0.92  estim.: -0.92  (0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00012', 'Tenth Place Team')
+             ExecTimeOverhead DARPA: -0.01  estim.: -0.01  (0.00)
+             FileSizeOverhead DARPA: -0.01  estim.: -0.01  (-0.00)
+               MemUseOverhead DARPA: 0.00  estim.: 0.00  (0.00)
+                    PerfScore DARPA: 1.00  estim.: 1.00  (0.00)
+('YAN01_00012', 'Seventh Place Team - Finalist')
+     ---     ExecTimeOverhead DARPA: 16587.08  estim.: 0.07  (-16587.01)
+             FileSizeOverhead DARPA: 0.02  estim.: 0.02  (0.00)
+               MemUseOverhead DARPA: 0.41  estim.: 0.34  (-0.07)
+     +++            PerfScore DARPA: 0.00  estim.: 0.42  (0.42)
+('YAN01_00012', 'Fourth Place Team - Finalist')
+             ExecTimeOverhead DARPA: 0.16  estim.: 0.03  (-0.13)
+             FileSizeOverhead DARPA: 0.03  estim.: 0.02  (-0.01)
+               MemUseOverhead DARPA: 0.41  estim.: 0.35  (-0.06)
+                    PerfScore DARPA: 0.34  estim.: 0.42  (0.08)
+('YAN01_00012', 'Ninth Place Team')
+     ---     ExecTimeOverhead DARPA: 0.26  estim.: 0.05  (-0.21)
+             FileSizeOverhead DARPA: -0.89  estim.: -0.88  (0.01)
+               MemUseOverhead DARPA: 0.83  estim.: 0.69  (-0.14)
+                    PerfScore DARPA: 0.08  estim.: 0.15  (0.07)
+KPRCA_00017
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00033
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00011
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00012
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist', 'First Place Team - Finalist', 'Fourth Place Team - Finalist', 'Second Place Team - Finalist', 'Eighth Place Team']) match, excellent!
+KPRCA_00013
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Fourth Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00036
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team']) (we also have: frozenset(['Sixth Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00010
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset(['Ninth Place Team']) )
+KPRCA_00034
+[  ] All first choice(s) frozenset(['Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00035
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Fourth Place Team - Finalist', 'Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00032
+[  ] All first choice(s) frozenset(['Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+CROMU_00014
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'First Place Team - Finalist', 'Second Place Team - Finalist', 'Fifth Place Team - Finalist', 'Eighth Place Team']) match, excellent!
+CROMU_00017
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Second Place Team - Finalist']) match, excellent!
+CROMU_00016
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Third Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00019
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team', 'Second Place Team - Finalist', 'Fifth Place Team - Finalist']) match, excellent!
+CROMU_00018
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'First Place Team - Finalist', 'Fourth Place Team - Finalist', 'Ninth Place Team', 'Fifth Place Team - Finalist', 'Eighth Place Team']) match, excellent!
+KPRCA_00038
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Eighth Place Team']) (we also have: frozenset(['First Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00039
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Fifth Place Team - Finalist']) (we also have: frozenset([])  -- darpa also has: frozenset(['Tenth Place Team']) )
+NRFIN_00018
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Tenth Place Team']) (we also have: frozenset([])  -- darpa also has: frozenset(['Seventh Place Team - Finalist', 'Fifth Place Team - Finalist', 'First Place Team - Finalist', 'Fourth Place Team - Finalist', 'Ninth Place Team', 'Second Place Team - Finalist', 'Eighth Place Team', 'Thirteenth Place Team', 'Third Place Team - Finalist']) )
+NRFIN_00019
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Eighth Place Team', 'Ninth Place Team']) (we also have: frozenset(['Sixth Place Team - Finalist', 'Fourth Place Team - Finalist', 'Second Place Team - Finalist'])  -- darpa also has: frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) )
+NRFIN_00012
+[  ] All first choice(s) frozenset(['Third Place Team - Finalist', 'Seventh Place Team - Finalist', 'Tenth Place Team', 'Fourth Place Team - Finalist', 'Fifth Place Team - Finalist']) match, excellent!
+NRFIN_00011
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team']) match, excellent!
+NRFIN_00016
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Tenth Place Team']) (we also have: frozenset(['Fifth Place Team - Finalist', 'Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+NRFIN_00017
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+NRFIN_00014
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'First Place Team - Finalist', 'Fourth Place Team - Finalist', 'Fifth Place Team - Finalist', 'Eighth Place Team']) match, excellent!
+NRFIN_00015
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset(['Third Place Team - Finalist']) )
+CROMU_00006
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Fifth Place Team - Finalist']) (we also have: frozenset([])  -- darpa also has: frozenset(['First Place Team - Finalist']) )
+CROMU_00004
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Fourth Place Team - Finalist', 'Third Place Team - Finalist']) (we also have: frozenset([])  -- darpa also has: frozenset(['First Place Team - Finalist']) )
+CROMU_00005
+[  ] All first choice(s) frozenset(['First Place Team - Finalist']) match, excellent!
+CROMU_00002
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Tenth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00003
+[  ] All first choice(s) frozenset(['Sixth Place Team - Finalist', 'Seventh Place Team - Finalist']) match, excellent!
+CROMU_00001
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Ninth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Fourth Place Team - Finalist', 'Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00008
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'First Place Team - Finalist', 'Fourth Place Team - Finalist', 'Fifth Place Team - Finalist', 'Third Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00009
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00043
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Tenth Place Team', 'Eighth Place Team', 'Eleventh Place Team']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00042
+[  ] All first choice(s) frozenset(['Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00041
+[  ] All first choice(s) frozenset(['Fifth Place Team - Finalist', 'Tenth Place Team', 'Fourth Place Team - Finalist', 'Second Place Team - Finalist']) match, excellent!
+KPRCA_00040
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Third Place Team - Finalist', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00047
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Fourth Place Team - Finalist', 'Third Place Team - Finalist', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00046
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Second Place Team - Finalist']) match, excellent!
+KPRCA_00045
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Tenth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset([])  -- darpa also has: frozenset(['Seventh Place Team - Finalist']) )
+KPRCA_00044
+[  ] All first choice(s) frozenset(['Sixth Place Team - Finalist', 'Seventh Place Team - Finalist', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00049
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00048
+[  ] All first choice(s) frozenset(['Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00050
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00051
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team']) match, excellent!
+KPRCA_00052
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Third Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00053
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00054
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00011
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist', 'Third Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00037
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00012
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Sixth Place Team - Finalist', 'Fifth Place Team - Finalist', 'Fourth Place Team - Finalist', 'Second Place Team - Finalist', 'Eighth Place Team']) match, excellent!
+CROMU_00015
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Second Place Team - Finalist']) (we also have: frozenset(['Third Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00033
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00007
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team']) (we also have: frozenset(['Second Place Team - Finalist', 'Fourth Place Team - Finalist', 'Ninth Place Team', 'Fifth Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00030
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Second Place Team - Finalist']) match, excellent!
+KPRCA_00031
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist']) match, excellent!
+NRFIN_00041
+[  ] All first choice(s) frozenset(['Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+NRFIN_00040
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Fifth Place Team - Finalist']) (we also have: frozenset([])  -- darpa also has: frozenset(['Tenth Place Team']) )
+NRFIN_00042
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Ninth Place Team']) (we also have: frozenset(['Fifth Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+NRFIN_00023
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team']) (we also have: frozenset([])  -- darpa also has: frozenset(['Sixth Place Team - Finalist']) )
+NRFIN_00022
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team', 'Eleventh Place Team']) match, excellent!
+NRFIN_00021
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Fourth Place Team - Finalist', 'Eleventh Place Team', 'Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+NRFIN_00020
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+NRFIN_00027
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Sixth Place Team - Finalist', 'Seventh Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Second Place Team - Finalist']) (we also have: frozenset(['Third Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+NRFIN_00026
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+NRFIN_00025
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Sixth Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset([])  -- darpa also has: frozenset(['First Place Team - Finalist']) )
+NRFIN_00024
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+NRFIN_00029
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+NRFIN_00030
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Sixth Place Team - Finalist', 'First Place Team - Finalist', 'Fourth Place Team - Finalist', 'Ninth Place Team', 'Second Place Team - Finalist', 'Third Place Team - Finalist']) match, excellent!
+NRFIN_00032
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist']) match, excellent!
+NRFIN_00033
+[  ] All first choice(s) frozenset(['Tenth Place Team']) match, excellent!
+NRFIN_00034
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team']) match, excellent!
+NRFIN_00035
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+NRFIN_00036
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+NRFIN_00037
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Twelfth Place Team', 'Seventh Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['First Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+NRFIN_00038
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Second Place Team - Finalist']) (we also have: frozenset(['First Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+NRFIN_00039
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+YAN01_00009
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Tenth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+YAN01_00007
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'First Place Team - Finalist', 'Fourth Place Team - Finalist', 'Fifth Place Team - Finalist', 'Eighth Place Team', 'Third Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00028
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team']) match, excellent!
+CROMU_00029
+[  ] All first choice(s) frozenset(['Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00009
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Fifth Place Team - Finalist']) (we also have: frozenset(['Seventh Place Team - Finalist', 'Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00008
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00042
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00043
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Second Place Team - Finalist', 'Fifth Place Team - Finalist']) (we also have: frozenset([])  -- darpa also has: frozenset(['Seventh Place Team - Finalist']) )
+CROMU_00040
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'First Place Team - Finalist', 'Second Place Team - Finalist', 'Ninth Place Team', 'Fifth Place Team - Finalist', 'Eighth Place Team']) match, excellent!
+CROMU_00041
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00002
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Ninth Place Team', 'Fourth Place Team - Finalist', 'Second Place Team - Finalist']) match, excellent!
+CROMU_00044
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team']) match, excellent!
+CROMU_00024
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+CROMU_00025
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+NRFIN_00005
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Second Place Team - Finalist']) (we also have: frozenset([])  -- darpa also has: frozenset(['First Place Team - Finalist', 'Fifth Place Team - Finalist']) )
+NRFIN_00004
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Fifth Place Team - Finalist']) (we also have: frozenset(['Third Place Team - Finalist'])  -- darpa also has: frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team']) )
+NRFIN_00006
+[  ] All first choice(s) frozenset(['Sixth Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+NRFIN_00001
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Tenth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset([])  -- darpa also has: frozenset(['First Place Team - Finalist']) )
+NRFIN_00009
+[  ] All first choice(s) frozenset(['Fifth Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team', 'Second Place Team - Finalist']) match, excellent!
+NRFIN_00008
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+YAN01_00010
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Thirteenth Place Team']) (we also have: frozenset(['Tenth Place Team', 'Fifth Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+YAN01_00011
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team']) (we also have: frozenset(['First Place Team - Finalist', 'Second Place Team - Finalist'])  -- darpa also has: frozenset(['Fifth Place Team - Finalist']) )
+YAN01_00012
+[  ] All first choice(s) frozenset(['Twelfth Place Team', 'First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00018
+[  ] All first choice(s) frozenset(['Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00019
+[  ] All first choice(s) frozenset(['Sixth Place Team - Finalist', 'Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Fifth Place Team - Finalist']) match, excellent!
+CROMU_00039
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Tenth Place Team', 'Eighth Place Team']) (we also have: frozenset(['Fourth Place Team - Finalist', 'Fifth Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00038
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team']) (we also have: frozenset(['Ninth Place Team', 'Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00037
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist', 'Fourth Place Team - Finalist', 'Third Place Team - Finalist']) (we also have: frozenset([])  -- darpa also has: frozenset(['First Place Team - Finalist']) )
+CROMU_00036
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+CROMU_00035
+[  ] All first choice(s) frozenset(['Tenth Place Team']) match, excellent!
+CROMU_00034
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Eighth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset(['First Place Team - Finalist']) )
+KPRCA_00010
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist', 'Third Place Team - Finalist']) (we also have: frozenset(['Ninth Place Team'])  -- darpa also has: frozenset([]) )
+CROMU_00032
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+CROMU_00031
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team']) (we also have: frozenset(['Fifth Place Team - Finalist', 'Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00030
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00021
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00020
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Sixth Place Team - Finalist', 'Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00023
+[  ] All first choice(s) frozenset(['Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00022
+[  ] All first choice(s) frozenset(['Eighth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00025
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team']) match, excellent!
+KPRCA_00024
+[  ] All first choice(s) frozenset(['Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00027
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Second Place Team - Finalist', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00026
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team']) (we also have: frozenset([])  -- darpa also has: frozenset(['Fourth Place Team - Finalist']) )
+KPRCA_00029
+[  ] All first choice(s) frozenset(['Tenth Place Team', 'Ninth Place Team']) match, excellent!
+KPRCA_00028
+[  ] All first choice(s) frozenset(['Sixth Place Team - Finalist', 'Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Fifth Place Team - Finalist']) match, excellent!
+CROMU_00026
+[  ] All first choice(s) frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Third Place Team - Finalist', 'Fifth Place Team - Finalist']) match, excellent!
+CROMU_00027
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'First Place Team - Finalist', 'Eighth Place Team']) match, excellent!
+CROMU_00020
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Second Place Team - Finalist', 'Fourth Place Team - Finalist', 'Fifth Place Team - Finalist', 'Third Place Team - Finalist']) (we also have: frozenset(['First Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00021
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+CROMU_00022
+[  ] All first choice(s) frozenset(['Seventh Place Team - Finalist', 'Tenth Place Team', 'Eighth Place Team']) match, excellent!
+CROMU_00023
+[  ] All first choice(s) frozenset(['Tenth Place Team', 'Fifth Place Team - Finalist']) match, excellent!
+KPRCA_00014
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['Eighth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['First Place Team - Finalist', 'Ninth Place Team', 'Third Place Team - Finalist'])  -- darpa also has: frozenset([]) )
+KPRCA_00016
+[__] Partial match between our first choice(s) and DARPA's. Both have frozenset(['First Place Team - Finalist', 'Tenth Place Team', 'Fifth Place Team - Finalist']) (we also have: frozenset(['Second Place Team - Finalist'])  -- darpa also has: frozenset([]) )
