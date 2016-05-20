@@ -16,6 +16,7 @@ import struct
 import binascii
 import sys
 import json
+import ids
 import time
 import fcntl
 import logging
@@ -35,7 +36,7 @@ def get_current_round():
     if os.path.exists(path):
         with open(path, 'rb') as round_file:
             res = int(round_file.read().strip())
-    
+
     return res
 
 def hash_file(infile):
@@ -87,6 +88,7 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     config = None
     nonces = {}
     sessions = []
+    ids_parser = ids.ids_parser.ids_parser()
 
     files = {re.compile("^/round/[0-9]+/feedback/cb$"): 'application/json', # CB Stats
              re.compile("^/status$"): 'application/json',  # Game status
@@ -236,6 +238,17 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                                          'CONTENT_TYPE':self.headers['Content-Type'],})
 
     @staticmethod
+    def is_valid_filter(infile):
+        infile.seek(0)
+        lines = infile.readlines()
+        for rule in lines:
+            try:
+                TeamInterfaceHandler.ids_parser.parse(rule)
+            except SyntaxError:
+                return False
+        return True
+
+    @staticmethod
     def is_valid_cgc(infile):
         try:
             # save to tempfile and use cgcef_verify to validate
@@ -309,7 +322,7 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             fname = pov.filename
         else:
             msgs.append('malformed request')
-   
+
         if fname:
             resp["file"] = fname
 
@@ -327,7 +340,7 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                 timestamp = int(time.time())
                 prefix = "%s%s%s" % (os.curdir, os.sep, self.path)
                 write_from_file(pov.file, os.path.join(prefix, "%s_%s_%d_%d_%d.pov" % (csid, ext, team, throws, timestamp)))
-       
+
         if len(msgs):
             code = 400
             resp['error'] = msgs
@@ -338,8 +351,52 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         self.json_response(code, resp)
 
     def post_ids(self):
-        # TODO: actually run the IDS system and have it filter stuff
-        return self.json_response(500, "I REMOVED THIS")
+        msgs = []
+        resp = {} # 'file': '', 'hash':''}
+        form = self.get_form()
+
+        msgs = []
+
+        if 'csid' in form:
+            csid = form['csid'].value
+            if not self.is_valid_csid(csid):
+                msgs.append('invalid csid')
+        else:
+            msgs.append('invalid csid')
+
+        if 'file' in form:
+            ids_file = form['file']
+            fname = ids_file.filename
+
+            if not fname:
+                msgs.append('invalid format')
+
+            resp["file"] = fname
+            ext = hash_file(ids_file.file)
+            resp["hash"] = ext
+
+            size = file_size(ids_file.file)
+            if size > self.config['max_ids']:
+                msgs.append("malformed request")
+
+            if not self.is_valid_filter(ids_file.file):
+                msgs.append('invalid format')
+
+        else:
+            msgs.append('malformed request')
+
+        if not len(msgs):
+            timestamp = int(time.time())
+            prefix = "%s%s%s" % (os.curdir, os.sep, self.path)
+            write_from_file(ids_file.file, os.path.join(prefix, "%s_%s_%d.ids" % (csid, ext, timestamp)))
+
+            code = 200
+            resp["round"] = get_current_round()
+        else:
+            code = 400
+            resp['error'] = msgs
+
+        return self.json_response(code, resp)
 
     def post_rcb(self):
         msgs = []
@@ -381,7 +438,7 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                             msgs.append('invalid cbid')
 
                 form_dict["hash"] = hash_file(form_value.file)
-            
+
                 size = file_size(form_value.file)
                 if size > self.config['max_rcb']:
                     msgs.append("malformed request")
@@ -417,7 +474,7 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             logging.debug("path: %s", os.path.join(prefix, "%s_%s_%d" % (form_dict["file"], ext, timestamp)))
             write_from_file(form_value.file, os.path.join(prefix, "%s_%s_%d" % (form_dict["file"], ext, timestamp)))
 
-        resp['round'] = get_current_round() 
+        resp['round'] = get_current_round()
         return self.json_response(200, resp)
 
     def do_GET(self):
@@ -513,7 +570,7 @@ def main():
                         default=50*1024*1024)
 
     args = parser.parse_args()
-    
+
     assert os.path.isdir(args.cbdir), "--cbdir is not a directory: %s. Virtual Competition requires CBs to be present." % args.cbdir
 
     logger = logging.getLogger()
@@ -527,7 +584,7 @@ def main():
         os.makedirs(args.webroot)
 
     os.chdir(args.webroot)
-    
+
     httpd = TcpServer(("", args.port), TeamInterfaceHandler)
     print "serving at port %s" % args.port
     sys.stdout.flush()
@@ -535,9 +592,9 @@ def main():
     for directory in ['rcb', 'pov', 'ids']:
         try_makedirs(directory)
 
-    config = {'challenges': get_challenges(args.cbdir), 
+    config = {'challenges': get_challenges(args.cbdir),
               'realm': 'CGC',
-              'team': args.team, 
+              'team': args.team,
               'max_ids': args.max_ids,
               'max_rcb': args.max_rcb,
               'max_pov': args.max_pov
