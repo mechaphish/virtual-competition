@@ -7,14 +7,21 @@ which cgcef_verify >/dev/null || { echo "I need CGC scripts, run me in their VM!
 MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 CHALLENGES="/vagrant/shared/cgc-challenges"
 WEBROOT="/vagrant/shared/webroot"
+LOGROOT="/vagrant/logs"
 ROUNDLEN=${ROUNDLEN-300}
 ROUNDS=${ROUNDS-100}
 POLLS=${POLLS-100}
 CS_LIMIT=${CS_LIMIT-30}
 CS_ROUNDS_DURATION=${CS_ROUNDS_DURATION-10}
 
+if [ ! -d $LOGROOT ]; then
+    mkdir $LOGROOT
+fi
+
+echo $(date): $0 $@ >> $LOGROOT/launch.log
+
 function running {
-    if pgrep $1 > /dev/null && [ -e /tmp/${1}.pid ] ; then
+    if pgrep $1 > /dev/null && [ -e $LOGROOT/${1}.pid ] ; then
         return 0
     else
         return 1
@@ -23,12 +30,12 @@ function running {
 
 function status {
     if running ti-server; then
-        echo "ti-server is running with PID `cat /tmp/ti-server.pid`"
+        echo "ti-server is running with PID `cat $LOGROOT/ti-server.pid`"
     else
         echo "ti-server STOPPED"
     fi
     if running ti-rotate; then
-        echo "ti-rotate is running with PID `cat /tmp/ti-rotate.pid`"
+        echo "ti-rotate is running with PID `cat $LOGROOT/ti-rotate.pid`"
     else
         echo "ti-rotate STOPPED"
     fi
@@ -48,9 +55,9 @@ function start {
                            --roundlen "$ROUNDLEN" --team 6 --rounds "$ROUNDS" \
                            --polls "$POLLS" \
                            --cs-limit "$CS_LIMIT" --cs-rounds-duration "$CS_ROUNDS_DURATION" \
-                           --log /tmp/ti-rotate.log \
-                           --debug >/tmp/ti-rotate.stdout 2>/tmp/ti-rotate.stderr &
-        echo $! > /tmp/ti-rotate.pid
+                           --log $LOGROOT/ti-rotate.log \
+                           --debug >$LOGROOT/ti-rotate.stdout 2>$LOGROOT/ti-rotate.stderr &
+        echo $! > $LOGROOT/ti-rotate.pid
         echo "ti-rotate STARTED"
     fi
 
@@ -63,27 +70,27 @@ function start {
         nohup "$MYDIR/ti-server" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
                            --port 8888 \
                            --username "team-6" --password 9fb864f629eb4502edd795e5b7d5c3a0bac0aa8f56c183e3f795c523c0d4f82f \
-                           --debug >/tmp/ti-server.stdout 2>/tmp/ti-server.stderr &
-        echo $! > /tmp/ti-server.pid
+                           --debug >$LOGROOT/ti-server.stdout 2>$LOGROOT/ti-server.stderr &
+        echo $! > $LOGROOT/ti-server.pid
         echo "ti-server STARTED"
         sleep 1                 # nohup takes time to start
     fi
 
-    echo "Launched! For logs and info, see /tmp/ti-{rotate,server}.*"
+    echo "Launched! For logs and info, see $LOGROOT/ti-{rotate,server}.*"
 }
 
 function stop {
     if [ -z "$1" ] || [ "$1" = ti-server ]; then
         if running ti-server; then
-            kill `cat /tmp/ti-server.pid`
-            rm /tmp/ti-server.pid
+            kill `cat $LOGROOT/ti-server.pid`
+            rm $LOGROOT/ti-server.pid
             echo "ti-server STOPPED"
         fi
     fi
     if [ -z "$1" ] || [ "$1" = ti-rotate ]; then
         if running ti-rotate; then
-            kill `cat /tmp/ti-rotate.pid`
-            rm /tmp/ti-rotate.pid
+            kill `cat $LOGROOT/ti-rotate.pid`
+            rm $LOGROOT/ti-rotate.pid
             echo "ti-rotate STOPPED"
         fi
     fi
