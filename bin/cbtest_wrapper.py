@@ -147,7 +147,10 @@ def parse_cb_single_test_out(output_buf):
             final_result = "C"
         elif "SIGALRM" in curr_line or "not ok - process timed out" in curr_line:
             final_result = "F"
-    assert set(measurement.keys()) == set(c[2] for c in performance_counters)
+    if not set(measurement.keys()) == set(c[2] for c in performance_counters):
+        print 'WARNING: missing performance counter metrics'
+        print 'expected:', set(c[2] for c in performance_counters)
+        print 'received:', set(measurement.keys())
 
     if total_failed > 0:
         final_result = "F"
