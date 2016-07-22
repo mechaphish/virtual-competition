@@ -96,6 +96,29 @@ function stop {
     fi
 }
 
+function reset {
+    if ! which realpath >/dev/null; then
+        # PLEASE
+        REALROOT=/vagrant
+    else
+        REALROOT=$(dirname $(dirname $(realpath $0)))
+    fi
+
+    mv /vagrant/shared/cgc-challenges/* $REALROOT/shared/cgc-challenges-unfielded 2>/dev/null
+    mv /vagrant/shared/cgc-challenges-spent/* $REALROOT/shared/cgc-challenges-unfielded 2>/dev/null
+}
+
+function logs {
+    echo $LOGROOT/$1
+    if [ -f $LOGROOT/$1 ]; then
+        cat $LOGROOT/$1
+    else
+        echo 'Usage: logs [logfile]'
+        echo 'Available log files:'
+        ls $LOGROOT | cat
+    fi
+}
+
 case "${1-help}" in
     start)
         start "${2-}"
@@ -110,7 +133,13 @@ case "${1-help}" in
     status)
         status
         ;;
+    reset)
+        reset
+        ;;
+    logs)
+        logs "${2-}"
+        ;;
     *)
-        echo "Usage: ${BASH_SOURCE[0]} {start|stop|restart|status}"
+        echo "Usage: ${BASH_SOURCE[0]} {start|stop|restart|status|reset|logs}"
         ;;
 esac
