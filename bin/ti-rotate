@@ -151,12 +151,27 @@ class Rotator(object):
             for cs in current_cs_list:
                 shutil.move(os.path.join(self.initial_cbdir, cs), os.path.join(self.dest_cbdir, cs))
 
+            try:
+                (rcb_path, _, old_rcb_list) = os.walk(os.path.join(self.web_root, 'rcb_fielded')).next()
+                for rcb in old_rcb_list:
+                    os.remove(os.path.join(rcb_path, rcb))
+            except StopIteration:
+                pass
+
+            try:
+                (rcb_path, _, old_rcb_list) = os.walk(os.path.join(self.web_root, 'rcb')).next()
+                for rcb in old_rcb_list:
+                    os.remove(os.path.join(rcb_path, rcb))
+            except StopIteration:
+                pass
+
         # swap in some new challenge sets
-        in_count = random.randrange(2, 8)
+        in_count = random.randrange(3, 8)
+        if in_count >= len(source_cs_list) - 2:
+            in_count = len(source_cs_list)
         random.shuffle(source_cs_list)
         for cs in source_cs_list[:in_count]:
             shutil.move(os.path.join(self.source_cbdir, cs), os.path.join(self.initial_cbdir, cs))
-
 
     def install_cbs(self):
         cbdir = self.initial_cbdir
@@ -753,13 +768,13 @@ class Rotator(object):
 
             logging.debug("MY CBS STATUS %s", self.my_cbs_status)
             #sleep until end of round
+            logging.debug("--------------------------------------------------------------------------------")
             time.sleep(self.round_length)
 
             # cbs state machine
             self.change_my_cbs_status()
 
             self.round_num += 1
-            logging.debug("--------------------------------------------------------------------------------")
             if rounds is not None and self.round_num >= rounds:
                 logging.debug("Finished! good bye")
                 break
