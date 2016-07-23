@@ -99,11 +99,15 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
              re.compile("^/dl/[1-7]/cb/[0-9a-zA-Z_]+$"): 'application/octet-stream',  # Reforumated CB downloads
              re.compile("^/dl/[1-7]/ids/[0-9a-zA-Z_]+\\.ids$"): 'text/plain'}  # IDS Rule downloads
 
+    @property
+    def challenges(self):
+        return self.get_challenges(self.config['cbdir'])
+
     def is_valid_csid(self, csid):
-        return csid in self.config["challenges"]
+        return csid in self.challenges
 
     def is_valid_cbid(self, cbid):
-        challenges = self.config["challenges"]
+        challenges = self.challenges
 
         if cbid in challenges and challenges[cbid] == 1:
             return True
@@ -592,12 +596,12 @@ def main():
     for directory in ['rcb', 'pov', 'ids']:
         try_makedirs(directory)
 
-    config = {'challenges': get_challenges(args.cbdir),
-              'realm': 'CGC',
+    config = {'realm': 'CGC',
               'team': args.team,
               'max_ids': args.max_ids,
               'max_rcb': args.max_rcb,
-              'max_pov': args.max_pov
+              'max_pov': args.max_pov,
+              'cbdir': args.cbdir
               }
 
     add_auth('.htdigest', config['realm'], args.username, args.password)
