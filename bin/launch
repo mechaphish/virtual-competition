@@ -2,23 +2,34 @@
 
 set -eu
 
-which cgcef_verify >/dev/null || { echo "I need CGC scripts, run me in their VM!"; exit 1; }
+if which cgcef_verify >/dev/null; then
+    IN_VM=1
+else
+    IN_VM=
+fi
 
-MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-CHALLENGES="/vagrant/shared/cgc-challenges"
-WEBROOT="/vagrant/shared/webroot"
-LOGROOT="/vagrant/logs"
+MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+CHALLENGES="$MYDIR/shared/cgc-challenges"
+WEBROOT="$MYDIR/shared/webroot"
+LOGROOT="$MYDIR/logs"
 ROUNDLEN=${ROUNDLEN-300}
 ROUNDS=${ROUNDS-100}
 POLLS=${POLLS-10}
 CS_LIMIT=${CS_LIMIT-30}
 CS_ROUNDS_DURATION=${CS_ROUNDS_DURATION-10}
+PORT=${PORT-8888}
 
 if [ ! -d $LOGROOT ]; then
     mkdir $LOGROOT
 fi
 
 echo $(date): $0 $@ >> $LOGROOT/launch.log
+
+function require_vm {
+    if [ -z "$IN_VM" ]; then
+        exec vagrant ssh ti -c "/vagrant/bin/launch $1 $2"
+    fi
+}
 
 function running {
     if pgrep $1 > /dev/null && [ -e $LOGROOT/${1}.pid ] ; then
@@ -29,20 +40,42 @@ function running {
 }
 
 function status {
-    if running ti-server; then
-        echo "ti-server is running with PID `cat $LOGROOT/ti-server.pid`"
-    else
-        echo "ti-server STOPPED"
+    if [ -z "$1" ] || [ "$1" = ti-server ]; then
+        if running ti-server; then
+            echo "ti-server is running with PID `cat $LOGROOT/ti-server.pid`"
+        else
+            echo "ti-server STOPPED"
+        fi
     fi
-    if running ti-rotate; then
-        echo "ti-rotate is running with PID `cat $LOGROOT/ti-rotate.pid`"
-    else
-        echo "ti-rotate STOPPED"
+
+    if [ -z "$1" ] || [ "$1" = ti-rotate ]; then
+        require_vm status ti-rotate
+        if running ti-rotate; then
+            echo "ti-rotate is running with PID `cat $LOGROOT/ti-rotate.pid`"
+        else
+            echo "ti-rotate STOPPED"
+        fi
     fi
 }
 
 function start {
+    if [ -z "$1" ] || [ "$1" = ti-server ]; then
+        if running ti-server; then
+            echo "ti-server already running!"
+            exit 1
+        fi
+
+        nohup "$MYDIR/bin/ti-server" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
+                           --port $PORT \
+                           --username "team-6" --password 9fb864f629eb4502edd795e5b7d5c3a0bac0aa8f56c183e3f795c523c0d4f82f \
+                           --debug >$LOGROOT/ti-server.stdout 2>$LOGROOT/ti-server.stderr &
+        echo $! > $LOGROOT/ti-server.pid
+        echo "ti-server STARTED"
+        sleep 1                 # nohup takes time to start
+    fi
+
     if [ -z "$1" ] || [ "$1" = ti-rotate ]; then
+        require_vm start ti-rotate
         if running ti-rotate; then
             echo "ti-rotate already running!"
             exit 1
@@ -51,7 +84,7 @@ function start {
         rm -rf "$WEBROOT"
         mkdir "$WEBROOT"
         # Note: run only one of these! This is the real round-by-round simulation
-        nohup "$MYDIR/ti-rotate" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
+        nohup "$MYDIR/bin/ti-rotate" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
                            --roundlen "$ROUNDLEN" --team 6 --rounds "$ROUNDS" \
                            --polls "$POLLS" \
                            --cs-limit "$CS_LIMIT" --cs-rounds-duration "$CS_ROUNDS_DURATION" \
@@ -61,22 +94,7 @@ function start {
         echo "ti-rotate STARTED"
     fi
 
-    if [ -z "$1" ] || [ "$1" = ti-server ]; then
-        if running ti-server; then
-            echo "ti-server already running!"
-            exit 1
-        fi
-
-        nohup "$MYDIR/ti-server" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
-                           --port 8888 \
-                           --username "team-6" --password 9fb864f629eb4502edd795e5b7d5c3a0bac0aa8f56c183e3f795c523c0d4f82f \
-                           --debug >$LOGROOT/ti-server.stdout 2>$LOGROOT/ti-server.stderr &
-        echo $! > $LOGROOT/ti-server.pid
-        echo "ti-server STARTED"
-        sleep 1                 # nohup takes time to start
-    fi
-
-    echo "Launched! For logs and info, see $LOGROOT/ti-{rotate,server}.*"
+    echo "Launched! For logs and info, run virtualcompetition logs"
 }
 
 function stop {
@@ -88,6 +106,7 @@ function stop {
         fi
     fi
     if [ -z "$1" ] || [ "$1" = ti-rotate ]; then
+        require_vm stop ti-rotate
         if running ti-rotate; then
             kill `cat $LOGROOT/ti-rotate.pid`
             rm $LOGROOT/ti-rotate.pid
@@ -96,16 +115,21 @@ function stop {
     fi
 }
 
-function reset {
-    if ! which realpath >/dev/null; then
-        # PLEASE
-        REALROOT=/vagrant
-    else
-        REALROOT=$(dirname $(dirname $(realpath $0)))
+function restart {
+    if [ -z "$1" ] || [ "$1" = ti-server ]; then
+        stop ti-server
+        start ti-server
     fi
+    if [ -z "$1" ] || [ "$1" = ti-rotate ]; then
+        require_vm restart ti-rotate
+        stop ti-rotate
+        start ti-rotate
+    fi
+}
 
-    mv /vagrant/shared/cgc-challenges/* $REALROOT/shared/cgc-challenges-unfielded 2>/dev/null
-    mv /vagrant/shared/cgc-challenges-spent/* $REALROOT/shared/cgc-challenges-unfielded 2>/dev/null
+function reset {
+    mv /vagrant/shared/cgc-challenges/* $MYPATH/shared/cgc-challenges-unfielded 2>/dev/null
+    mv /vagrant/shared/cgc-challenges-spent/* $MYPATH/shared/cgc-challenges-unfielded 2>/dev/null
 }
 
 function logs {
@@ -127,11 +151,10 @@ case "${1-help}" in
         stop "${2-}"
         ;;
     restart)
-        stop "${2-}"
-        start "${2-}"
+        restart "${2-}"
         ;;
     status)
-        status
+        status "${2-}"
         ;;
     reset)
         reset
