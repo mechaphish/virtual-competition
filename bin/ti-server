@@ -63,6 +63,7 @@ def write_from_file(infile, outfilename):
             outfile.write(block)
         else:
             break
+    fcntl.flock(outfile, fcntl.LOCK_UN)
     outfile.close()
 
 def write_to_file(infilename, outfile):

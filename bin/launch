@@ -17,7 +17,7 @@ ROUNDS=${ROUNDS-100}
 POLLS=${POLLS-10}
 CS_LIMIT=${CS_LIMIT-30}
 CS_ROUNDS_DURATION=${CS_ROUNDS_DURATION-10}
-PORT=${PORT-8888}
+PORT=${PORT-1996}
 
 if [ ! -d $LOGROOT ]; then
     mkdir $LOGROOT
@@ -27,8 +27,10 @@ echo $(date): $0 $@ >> $LOGROOT/launch.log
 
 function require_vm {
     if [ -z "$IN_VM" ]; then
-        exec vagrant ssh ti -c "/vagrant/bin/launch $1 $2"
+        vagrant ssh ti -c "/vagrant/bin/launch $1 $2" 2>/dev/null
+        return 1
     fi
+    return 0
 }
 
 function running {
@@ -49,16 +51,39 @@ function status {
     fi
 
     if [ -z "$1" ] || [ "$1" = ti-rotate ]; then
-        require_vm status ti-rotate
-        if running ti-rotate; then
-            echo "ti-rotate is running with PID `cat $LOGROOT/ti-rotate.pid`"
-        else
-            echo "ti-rotate STOPPED"
+        if require_vm status ti-rotate; then
+            if running ti-rotate; then
+                echo "ti-rotate is running with PID `cat $LOGROOT/ti-rotate.pid`"
+            else
+                echo "ti-rotate STOPPED"
+            fi
         fi
     fi
 }
 
 function start {
+    if [ -z "$1" ] || [ "$1" = ti-rotate ]; then
+        if require_vm start ti-rotate; then
+            if running ti-rotate; then
+                echo "ti-rotate already running!"
+                exit 1
+            fi
+
+            rm -rf "$WEBROOT"
+            mkdir "$WEBROOT"
+            # Note: run only one of these! This is the real round-by-round simulation
+            nohup "$MYDIR/bin/ti-rotate" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
+                               --roundlen "$ROUNDLEN" --team 6 --rounds "$ROUNDS" \
+                               --polls "$POLLS" \
+                               --cs-limit "$CS_LIMIT" --cs-rounds-duration "$CS_ROUNDS_DURATION" \
+                               --log $LOGROOT/ti-rotate.log \
+                               --debug >$LOGROOT/ti-rotate.stdout 2>$LOGROOT/ti-rotate.stderr </dev/null & disown
+            echo $! > $LOGROOT/ti-rotate.pid
+            echo "ti-rotate STARTED"
+            sleep 1                 # nohup takes time to start
+        fi
+    fi
+
     if [ -z "$1" ] || [ "$1" = ti-server ]; then
         if running ti-server; then
             echo "ti-server already running!"
@@ -68,33 +93,11 @@ function start {
         nohup "$MYDIR/bin/ti-server" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
                            --port $PORT \
                            --username "team-6" --password 9fb864f629eb4502edd795e5b7d5c3a0bac0aa8f56c183e3f795c523c0d4f82f \
-                           --debug >$LOGROOT/ti-server.stdout 2>$LOGROOT/ti-server.stderr &
+                           --debug >$LOGROOT/ti-server.stdout 2>$LOGROOT/ti-server.stderr </dev/null & disown
         echo $! > $LOGROOT/ti-server.pid
         echo "ti-server STARTED"
         sleep 1                 # nohup takes time to start
     fi
-
-    if [ -z "$1" ] || [ "$1" = ti-rotate ]; then
-        require_vm start ti-rotate
-        if running ti-rotate; then
-            echo "ti-rotate already running!"
-            exit 1
-        fi
-
-        rm -rf "$WEBROOT"
-        mkdir "$WEBROOT"
-        # Note: run only one of these! This is the real round-by-round simulation
-        nohup "$MYDIR/bin/ti-rotate" --cbdir "$CHALLENGES" --webroot "$WEBROOT" \
-                           --roundlen "$ROUNDLEN" --team 6 --rounds "$ROUNDS" \
-                           --polls "$POLLS" \
-                           --cs-limit "$CS_LIMIT" --cs-rounds-duration "$CS_ROUNDS_DURATION" \
-                           --log $LOGROOT/ti-rotate.log \
-                           --debug >$LOGROOT/ti-rotate.stdout 2>$LOGROOT/ti-rotate.stderr &
-        echo $! > $LOGROOT/ti-rotate.pid
-        echo "ti-rotate STARTED"
-    fi
-
-    echo "Launched! For logs and info, run virtualcompetition logs"
 }
 
 function stop {
@@ -106,25 +109,19 @@ function stop {
         fi
     fi
     if [ -z "$1" ] || [ "$1" = ti-rotate ]; then
-        require_vm stop ti-rotate
-        if running ti-rotate; then
-            kill `cat $LOGROOT/ti-rotate.pid`
-            rm $LOGROOT/ti-rotate.pid
-            echo "ti-rotate STOPPED"
+        if require_vm stop ti-rotate; then
+            if running ti-rotate; then
+                kill `cat $LOGROOT/ti-rotate.pid`
+                rm $LOGROOT/ti-rotate.pid
+                echo "ti-rotate STOPPED"
+            fi
         fi
     fi
 }
 
 function restart {
-    if [ -z "$1" ] || [ "$1" = ti-server ]; then
-        stop ti-server
-        start ti-server
-    fi
-    if [ -z "$1" ] || [ "$1" = ti-rotate ]; then
-        require_vm restart ti-rotate
-        stop ti-rotate
-        start ti-rotate
-    fi
+    stop "$1"
+    start "$1"
 }
 
 function reset {

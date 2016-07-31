@@ -84,6 +84,7 @@ def is_locked(path):
     with open(path, 'r') as f:
         try:
             fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            fcntl.flock(f, fcntl.LOCK_UN)
         except IOError:
             result = True
 
