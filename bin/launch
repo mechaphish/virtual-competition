@@ -34,8 +34,12 @@ function require_vm {
 }
 
 function running {
-    if pgrep $1 > /dev/null && [ -e $LOGROOT/${1}.pid ] ; then
-        return 0
+    if [ -e $LOGROOT/${1}.pid ] ; then
+        if ps aux | grep $(cat $LOGROOT/${1}.pid) | grep $1 >/dev/null; then
+            return 0
+        else
+            return 1
+        fi
     else
         return 1
     fi
