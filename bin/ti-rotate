@@ -596,7 +596,7 @@ class Rotator(object):
         if r.randrange(0, 5) == 0:
             perf_memory += r.randrange(1, 40)
 
-        self.cached_scores[file_hash] = map(str, (success, timeout, function, perf_time, perf_memory))
+        self.cached_scores[file_hash] = map(str, (success, timeout, connect, function, perf_time, perf_memory))
 
     def build_poll_summary_list(self):
         result = []
