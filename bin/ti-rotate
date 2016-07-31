@@ -111,6 +111,12 @@ class Rotator(object):
         if not os.path.exists(self.dest_cbdir):
             os.mkdir(self.dest_cbdir)
 
+        scores_path = os.path.join(cbdir, '../scores.json')
+        if os.path.exists(scores_path):
+            self.cached_scores = json.load(open(scores_path))
+        else:
+            self.cached_scores = {}
+
         self.polls = polls
 
         self.cs_limit = cs_limit
@@ -564,53 +570,75 @@ class Rotator(object):
 
     def test_fielded_rcb(self, rcb):
         return
-        _, _, csid,  _, _ = self.cbinfo_from_name(rcb)
-        output_dir = os.path.join(self.web_root, "cbtests/round/%s" % self.round_num)
-        output_file = os.path.join(output_dir, csid)
-        cb_file = os.path.join(self.web_root, "rcb_fielded/%s" % rcb)
-        try_makedirs(output_dir)
-        cb_cmd = '/vagrant/bin/cbtest_wrapper.py -p %s -i %s %s > %s' % (self.polls, csid, cb_file, output_file)
-        logging.debug("CMD %s", cb_cmd)
-        subprocess.Popen(['ssh', 'cb', '-x', cb_cmd])
-        logging.debug("Fielded CB %s", cb_file)
+        #_, _, csid,  _, _ = self.cbinfo_from_name(rcb)
+        #output_dir = os.path.join(self.web_root, "cbtests/round/%s" % self.round_num)
+        #output_file = os.path.join(output_dir, csid)
+        #cb_file = os.path.join(self.web_root, "rcb_fielded/%s" % rcb)
+        #try_makedirs(output_dir)
+        #cb_cmd = '/vagrant/bin/cbtest_wrapper.py -p %s -i %s %s > %s' % (self.polls, csid, cb_file, output_file)
+        #logging.debug("CMD %s", cb_cmd)
+	#global vm_to_test_on
+	#vm_to_test_on = random.choice(ALL_VMS)
+        #subprocess.Popen(['ssh', 'cb', '-x', cb_cmd])
+        #logging.debug("Fielded CB %s", cb_file)
 
     def build_poll_summary_list(self):
-        fielded_path = os.path.join(self.web_root, 'rcb_fielded')
-        results_path = os.path.join(self.web_root, "cbtests/round/%s" % (self.round_num - 1))
+        #fielded_path = os.path.join(self.web_root, 'rcb_fielded')
+        #results_path = os.path.join(self.web_root, "cbtests/round/%s" % (self.round_num - 1))
         result = []
-        for csid in self.csets:
+        for rcb in self.my_cbs.values():
+            csid, cb_path = rcb['csid'], rcb['path']
 
-            total = 100
+            cb_hash = hash_file(cb_path)
+            if cb_hash not in self.cached_scores:
+                poll = {
+                    'csid': csid,
+                    'functionality': {
+                        'success': '100',
+                        'timeout': '0',
+                        'connect': '0',
+                        'function': '0'
+                    },
+                    'performance': {
+                        'time': '100',
+                        'memory': '100'
+                    }
+                }
+                result.append(poll)
+                continue
 
-            success = random.randint(0, total - 30)
-            total -= success
+            success, timeout, connect, function, perf_time, perf_memory = self.cached_scores[cb_hash]
 
-            timeout = random.randint(0, max(0, total - 20))
-            total -= timeout
+            #total = 100
 
-            connect = random.randint(0, max(0, total - 10))
-            total -= connect
+            #success = random.randint(0, total - 30)
+            #total -= success
 
-            function = total
+            #timeout = random.randint(0, max(0, total - 20))
+            #total -= timeout
 
-            assert 100 == success + timeout + connect + function
+            #connect = random.randint(0, max(0, total - 10))
+            #total -= connect
 
-            perf = {}
-            results = os.path.join(results_path, csid)
-            data = None
-            if os.path.isfile(results):
-                with open(results) as jsonfile:
-                    try:
-                        data = json.load(jsonfile)
-                    except ValueError:
-                        pass
-            if data is not None:
-                perf['time'] = int((data['tested']['scores']['ExecTimeOverhead'] + 1) * 100)
-                perf['memory'] = int((data['tested']['scores']['MemUseOverhead'] + 1) * 100)
-                logging.debug("Results %s: %s", results, perf)
-            else:
-                perf['time'] = int(random.uniform(0.85, 1.15) * 100)
-                perf['memory'] = int(random.uniform(0.85, 1.15) * 100)
+            #function = total
+
+            #assert 100 == success + timeout + connect + function
+
+            #results = os.path.join(results_path, csid)
+            #data = None
+            #if os.path.isfile(results):
+            #    with open(results) as jsonfile:
+            #        try:
+            #            data = json.load(jsonfile)
+            #        except ValueError:
+            #            pass
+            #if data is not None:
+            #    perf_time = int((data['tested']['scores']['ExecTimeOverhead'] + 1) * 100)
+            #    perf_memory = int((data['tested']['scores']['MemUseOverhead'] + 1) * 100)
+            #    logging.debug("Results %s: %s", results, perf)
+            #else:
+            #    perf_time = 'NOT AVAILABLE_YET'
+            #    perf_memory = 'NOT AVAILABLE_YET'
 
             poll = {
                 'csid': csid,
@@ -621,11 +649,13 @@ class Rotator(object):
                     'function': function
                 },
                 'performance': {
-                    'time': perf['time'],
-                    'memory': perf['memory']
+                    'time': perf_time,
+                    'memory': perf_memory
                 }
             }
+            print 'Provided this feedback:', poll
             result.append(poll)
+        sys.stdout.flush()
         return result
 
     def write_poll_feedback(self, path):

@@ -16,7 +16,7 @@ import struct
 import binascii
 import sys
 import json
-import ids
+#import ids
 import time
 import fcntl
 import logging
@@ -89,7 +89,7 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     config = None
     nonces = {}
     sessions = []
-    ids_parser = ids.ids_parser.ids_parser()
+    #ids_parser = ids.ids_parser.ids_parser()
 
     files = {re.compile("^/round/[0-9]+/feedback/cb$"): 'application/json', # CB Stats
              re.compile("^/status$"): 'application/json',  # Game status
@@ -102,7 +102,14 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
     @property
     def challenges(self):
-        return self.get_challenges(self.config['cbdir'])
+        return get_challenges(self.config['cbdir'])
+
+    def __init__(self, request, client_address, server):
+        if client_address[0] != "192.168.1.10":
+           self.allowed = False
+        else:
+           self.allowed = True
+        SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, client_address, server)
 
     def is_valid_csid(self, csid):
         return csid in self.challenges
@@ -195,6 +202,9 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         return fields
 
     def check_auth(self, method):
+        #if not self.allowed:
+        #    return False
+
         auth = self.headers.getheader('Authorization')
         if auth is None:
             logging.debug('missing auth')
@@ -253,19 +263,27 @@ class TeamInterfaceHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                 return False
         return True
 
+    #@staticmethod
+    #def is_valid_cgc(infile):
+    #    try:
+    #        # save to tempfile and use cgcef_verify to validate
+    #        tfile = tempfile.mkstemp()
+    #        write_from_file(infile, tfile[1])
+    #        os.close(tfile[0])
+    #        subprocess.check_call(["cgcef_verify", tfile[1]])
+    #        os.remove(tfile[1])
+    #    except:
+    #        os.remove(tfile[1])
+    #        return False
+    #    return True
+
+    # OH FUCK, WE MOVED OUTSIDE THE VM?
+    # new test: does it have the right magic number
     @staticmethod
     def is_valid_cgc(infile):
-        try:
-            # save to tempfile and use cgcef_verify to validate
-            tfile = tempfile.mkstemp()
-            write_from_file(infile, tfile[1])
-            os.close(tfile[0])
-            subprocess.check_call(["cgcef_verify", tfile[1]])
-            os.remove(tfile[1])
-        except:
-            os.remove(tfile[1])
-            return False
-        return True
+        infile.seek(0)
+        magic = infile.read(4)
+        return magic == '\x7fCGC'
 
     def json_response(self, code, data):
         self.set_headers(code)
@@ -528,7 +546,6 @@ def add_auth(filename, realm, username, password):
             for line in filehandle.readlines():
                 if entry == line:
                     return
-
     with open(filename, 'a') as filehandle:
         filehandle.write(entry)
 
