@@ -132,10 +132,10 @@ class Rotator(object):
         self.precompiled_cbs = defaultdict(list)
 
         self.teams = [i for i in range(1, 8)]
-        self.installed_filters = {team:{} for team in self.teams}
         self.scores = {i:0 for i in self.teams}
         self.signals = [signal.SIGILL, signal.SIGSEGV, signal.SIGBUS]
 
+        self.installed_filters = {team:{} for team in self.teams}
         self.my_filters = self.installed_filters[self.my_team]
 
         try_makedirs(self.web_root)
@@ -227,6 +227,9 @@ class Rotator(object):
 
     def install_filters(self):
         #install initial filters to all teams
+
+        self.installed_filters = {team:{} for team in self.teams}
+        self.my_filters = self.installed_filters[self.my_team]
 
         base_ids_rule = '#empty\n'
         install_time = int(time.time())
