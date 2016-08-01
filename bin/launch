@@ -129,8 +129,8 @@ function restart {
 }
 
 function reset {
-    mv /vagrant/shared/cgc-challenges/* $MYPATH/shared/cgc-challenges-unfielded 2>/dev/null
-    mv /vagrant/shared/cgc-challenges-spent/* $MYPATH/shared/cgc-challenges-unfielded 2>/dev/null
+    mv /vagrant/shared/cgc-challenges/* $MYDIR/shared/cgc-challenges-unfielded 2>/dev/null
+    mv /vagrant/shared/cgc-challenges-spent/* $MYDIR/shared/cgc-challenges-unfielded 2>/dev/null
 }
 
 function logs {
