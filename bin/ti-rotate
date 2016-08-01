@@ -591,8 +591,8 @@ class Rotator(object):
         if r.randrange(0, 5) == 0:
             connect = r.randrange(1, 10)
             success -= connect
-        if r.randrange(0, 5) == 0:
-            function = r.randrange(1, 10)
+        if r.randrange(0, 3) == 0:
+            function = r.randrange(1, 30)
             success -= function
         if r.randrange(0, 5) == 0:
             perf_time += r.randrange(1, 40)
