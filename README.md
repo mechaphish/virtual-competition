@@ -8,12 +8,13 @@
 
 ## Run
 
+Place the challenge sets you would like to have fielded in the `shared/cgc-challenges` folder.
+
 To initialize VMs and start the competition:
 
 ```
-vagrant up
-vagrant ssh ti
-/vagrant/bin/launch start # default options: ROUNDLEN=300 POLLS=100 ROUNDS=100
+vagrant up crs
+bin/launch start # default options: ROUNDLEN=300 POLLS=10 ROUNDS=100
 ```
 
 
@@ -62,3 +63,5 @@ Changes to DARPA's [virtual-competition](https://github.com/CyberGrandChallenge/
 - disabled IDS submission, since we're not running the filter (TODO)
 - ti-rotate will also (re-)field official, possibly patched, binaries
 - Minor: ti-server checks `MAX_THROWS`, fixed size limits, defaults to our credentials
+- **current version** has the "real poll feedbacks" disabled, replaced with random but consistent feedbacks based on the binary hash
+- There is the option to have ti-rotate swap out the current set of challenges and swap in a new set every *n* rounds, these binaries will be pulled from `shared/cgc-challenges-unfielded`
