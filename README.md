@@ -13,9 +13,12 @@ Place the challenge sets you would like to have fielded in the `shared/cgc-chall
 To initialize VMs and start the competition:
 
 ```
-vagrant up crs
-bin/launch start # default options: ROUNDLEN=300 POLLS=10 ROUNDS=100
+vagrant up ti
+bin/launch start
 ```
+
+`bin/launch` is the control script for the virtual competition.
+Take a look at it!
 
 
 ## Update VMs
