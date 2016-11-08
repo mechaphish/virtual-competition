@@ -132,10 +132,10 @@ class Rotator(object):
         self.precompiled_cbs = defaultdict(list)
 
         self.teams = [i for i in range(1, 8)]
-        self.installed_filters = {team:{} for team in self.teams}
         self.scores = {i:0 for i in self.teams}
         self.signals = [signal.SIGILL, signal.SIGSEGV, signal.SIGBUS]
 
+        self.installed_filters = {team:{} for team in self.teams}
         self.my_filters = self.installed_filters[self.my_team]
 
         try_makedirs(self.web_root)
@@ -227,6 +227,9 @@ class Rotator(object):
 
     def install_filters(self):
         #install initial filters to all teams
+
+        self.installed_filters = {team:{} for team in self.teams}
+        self.my_filters = self.installed_filters[self.my_team]
 
         base_ids_rule = '#empty\n'
         install_time = int(time.time())
@@ -588,15 +591,15 @@ class Rotator(object):
         if r.randrange(0, 5) == 0:
             connect = r.randrange(1, 10)
             success -= connect
-        if r.randrange(0, 5) == 0:
-            function = r.randrange(1, 10)
+        if r.randrange(0, 3) == 0:
+            function = r.randrange(1, 30)
             success -= function
         if r.randrange(0, 5) == 0:
             perf_time += r.randrange(1, 40)
         if r.randrange(0, 5) == 0:
             perf_memory += r.randrange(1, 40)
 
-        self.cached_scores[file_hash] = map(str, (success, timeout, function, perf_time, perf_memory))
+        self.cached_scores[file_hash] = map(str, (success, timeout, connect, function, perf_time, perf_memory))
 
     def build_poll_summary_list(self):
         result = []
