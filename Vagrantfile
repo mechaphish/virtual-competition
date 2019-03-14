@@ -10,8 +10,10 @@ nodes = {
 
 Vagrant.configure(2) do |config|
     config.vm.box = "cgc-linux-dev"
-    config.vm.box_url = 'http://s3.amazonaws.com/cgcdist/boxes/vm.json'
-
+    # Switch to the DARPA-hosted backup
+    # config.vm.box_url = 'http://s3.amazonaws.com/cgcdist/boxes/vm.json'
+    config.vm.box_url = 'https://archive.darpa.mil/CyberGrandChallenge_Repo/release-cfe/boxes/cgc-linux-dev.box'
+    
     nodes.each_key do |name|
         config.vm.define "#{name}", primary: nodes[name][:primary] do |node|
             nodes[name][:ip].each do |ip_addr|
